@@ -1,8 +1,10 @@
 <?php
+define('URL', 'index.php?module=');
 function url($path){
     header('Location:index.php?module='.$path);
 }
 
+define('URL_ADMIN', 'index.php?module=admin.');
 function urlAdmin($path){
     header('Location:index.php?module=admin.'.$path);
 }
@@ -29,4 +31,9 @@ function urlForget(){
 define('URL_HOME', 'index.php?module=home');
 function urlHome(){
     header('Location:index.php?module=home');
+}
+
+define('URL_FRONT', 'index.php?module=');
+function urlFront($path){
+    header('Location:index.php?module='.$path);
 }

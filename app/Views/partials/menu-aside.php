@@ -3,47 +3,47 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                             </span>
+							<img alt="image" class="img-circle" src="img/profile_small.jpg" />
+							 </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Administration du site</strong>
-                             </span> <span class="text-muted text-xs block">Quiter<b class="caret"></b></span> </span> </a>
+							<span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
+							 </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="index.php?page=logout">Déconnexion</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
+                        <li><a href="mailbox.html">Mailbox</a></li>
+                        <li class="divider"></li>
+                        <li><a href="login.html">Logout</a></li>
                     </ul>
                 </div>
                 <div class="logo-element">
-                    JENNY+
+                    IN+
                 </div>
             </li>
-            <li class="<?php echo ($page=="accueil")? "active" : "";  ?>">
-                <a href="index.php?page=accueil"><i class="fa fa-th-large"></i> <span class="nav-label">Tableau de bord </span></span></a>
+            <li class="active">
+                <a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="active"><a href="index-2.html">Dashboard v.1</a></li>
+                    <li><a href="dashboard_2.html">Dashboard v.2</a></li>
+                    <li><a href="dashboard_3.html">Dashboard v.3</a></li>
+                    <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
+                    <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
+                </ul>
             </li>
-            <li class="<?php echo ($page=="posts")? "active" : "";  ?>">
-                <a href="index.php?page=posts"><i class="fa fa-cutlery"></i> <span class="nav-label">Menu du jour </span></span></a>
+            <li class="">
+                <a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Paramètre</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="<?= URL_ADMIN  ?>arrond.index">Gestion d'arrondissement</a></li>
+                    <li><a href="<?= URL_ADMIN  ?>categories.index">Gestion de categories</a></li>
+                    <li><a href="<?= URL_ADMIN  ?>piece.index">Gestion de nombre de pièce</a></li>
+                    <li><a href="<?= URL_ADMIN  ?>ville.index">Gestion de ville</a></li>
+                    <li><a href="<?= URL_ADMIN  ?>quartier.index">Gestion de quartier</a></li>
+                    <li><a href="<?= URL_ADMIN  ?>roles.index">Gestion de role</a></li>
+                    <li><a href="<?= URL_ADMIN  ?>type.index">Gestion de type de bien</a></li>
+                </ul>
             </li>
-            <li class="<?php echo ($page=="categories")? "active" : "";  ?>">
-                <a href="index.php?page=categories"><i class="fa fa-cutlery"></i> <span class="nav-label">Categories des plats</span></span></a>
-            </li>
-            <li class="<?php echo ($page=="group_boisson")? "active" : "";  ?>">
-                <a href="index.php?page=group_boisson"><i class="fa fa-list"></i> <span class="nav-label">Group des boissons</span></span></a>
-            </li>
-            <li class="<?php echo ($page=="boissons")? "active" : "";  ?>">
-                <a href="index.php?page=boissons"><i class="fa fa-list"></i> <span class="nav-label">Boissons</span></span></a>
-            </li>
-            <li class="<?php echo ($page=="sous_categories_boisson")? "active" : "";  ?>">
-                <a href="index.php?page=sous_categories_boisson"><i class="fa fa-list"></i> <span class="nav-label">Categories (boissons)</span></span></a>
-            </li>
-            <li class="<?php echo ($page=="commandes")? "active" : "";  ?>">
-                <a href="index.php?page=commandes"><i class="fa fa-shopping-bag"></i> <span class="nav-label">Commandes </span></span></a>
-            </li>
-            <li class="<?php echo ($page=="contacts")? "active" : "";  ?>">
-                <a href="index.php?page=contacts"><i class="fa fa-envelope"></i> <span class="nav-label">Contacts </span></span></a>
-            </li>
-            <li class="<?php echo ($page=="galeries")? "active" : "";  ?>">
-                <a href="index.php?page=galeries"><i class="fa fa-envelope"></i> <span class="nav-label">Nos evénements </span></span></a>
-            </li>
-            <li class="<?php echo ($page=="utilisateurs")? "active" : "";  ?>">
-                <a href="index.php?page=utilisateurs"><i class="fa fa-users"></i> <span class="nav-label">Utilisateurs </span></span></a>
+            <li class="">
+                <a href="index.php?module=home"><i class="fa fa-th-large"></i> <span class="nav-label">Tableau de bord </span></span></a>
             </li>
         </ul>
 

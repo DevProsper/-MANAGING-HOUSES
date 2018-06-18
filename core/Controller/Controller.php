@@ -1,6 +1,5 @@
 <?php
 namespace Core\Controller;
-use Core\Session\Session;
 
 /**
  * Created by PhpStorm.

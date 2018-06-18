@@ -1,18 +1,19 @@
 <?php
-
-namespace App\Table;
-use App\Table\Repository\UserRepository;
-use Core\Table\Table;
-
 /**
  * Created by PhpStorm.
- * Users: DevProsper
- * Date: 12/03/2018
- * Time: 18:17
+ * User: DevProsper
+ * Date: 05/06/2018
+ * Time: 05:39
  */
-class UserTable extends Table
+
+namespace App\Table;
+
+
+use Core\Table\Table;
+
+class UtilisateurTable extends Table
 {
-    protected $table = "users";
+    protected $table = "utilisateurs";
 
     /**
      * Créer un utilisateurs

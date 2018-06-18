@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>EDITER LA CATEGORIE</h2>
+        <h2>EDITER LE TYPE DE BIEN</h2>
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -29,9 +29,6 @@
                             <form method="post" action="">
                                 <div class="form-group">
                                     <?= $form->input('nom', 'Nom'); ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= $form->input('slug', 'Slug'); ?>
                                 </div>
                                 <div class="input-group-btn">
                                     <button type="submit" name="submit" class="btn btn-sm btn-primary">Sauvegarder</button>

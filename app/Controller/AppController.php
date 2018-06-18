@@ -20,7 +20,17 @@ class AppController extends Controller
 
     public function __construct(){
         $this->viewPath = ROOT . '/app/Views/';
+        $this->loadModel('Arrondissement');
+        $this->loadModel('Category');
+        $this->loadModel('Contact');
+        $this->loadModel('Depot');
+        $this->loadModel('Piece');
         $this->loadModel('Post');
+        $this->loadModel('Quartier');
+        $this->loadModel('Role');
+        $this->loadModel('Type');
+        $this->loadModel('Utilisateur');
+        $this->loadModel('Ville');
         $this->template = "default";
         $this->auth = new DBAuth(App::getInstance()->getDB());
         $this->db = new MysqlDatabase(App::getInstance()->getDB());
@@ -57,7 +67,7 @@ class AppController extends Controller
         }
     }
 
-    protected function loadModel($model_name,$respository = null){
+    protected function loadModel($model_name){
         $this->$model_name = App::getInstance()->getTable($model_name);
     }
 
@@ -66,13 +76,35 @@ class AppController extends Controller
     }
 
 
-
-
     public function paginatePost($current2,$nbPage2,$perPage){
         $perPage = $this->perPage($perPage);
         $nbPage = $nbPage2;
         $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
         $statement = $this->Post->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
+    public function paginateArrondi($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Arrondissement->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
+    public function paginateCategorie($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Category->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
+    public function paginateType($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Type->lastP($firstOpage,$perPage);
         return $statement;
     }
 

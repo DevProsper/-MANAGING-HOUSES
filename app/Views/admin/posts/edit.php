@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>EDITER LA CATEGORIE DU PLAT</h2>
+        <h2>EDITER LE BIEN</h2>
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -25,16 +25,49 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-12 b-r">
+                        <div class="col-sm-8 b-r">
                             <form method="post" action=" " enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <?= $form->input('title', 'Titre'); ?>
+                                    <?= $form->input('titre', 'Titre'); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->input('content', 'Contenu', ['type' => 'textarea']); ?>
+                                    <?= $form->input('contenu', 'Contenu', ['type' => 'textarea']); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->select('category_id', 'Categories', $categories_list); ?>
+                                    <?= $form->input('prix', 'Prix'); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->select('id_categorie', 'Categories', $categories_list); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->select('id_ville', 'Ville', $arrondissement_list); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->select('id_arrondissement', 'Arrondissement', $categories_list); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->select('id_quartier', 'Quartier', $categories_list); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->select('adresse', 'Adresse', $categories_list); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->select('id_piece', 'Nombre de piece', $categories_list); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->select('id_type_bien', 'Type de bien', $categories_list); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->input('latitude', 'Latitude'); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->input('longitude', 'Longitude'); ?>
+                                </div>
+                                <div class="form-group">
+                                        <?= $form->select('statut', 'Statut', $categories_list); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->select('id_agence', 'Agence', $categories_list); ?>
                                 </div>
                                 <div class="form-group">
                                     <label>Fichier</label>
@@ -46,6 +79,9 @@
                                     <button type="submit" name="submit" class="btn btn-sm btn-primary">Sauvegarder</button>
                                 </div>
                             </form>
+                        </div>
+                        <div class="col-sm-4 b-r">
+                            IMAGES
                         </div>
                     </div>
                 </div>

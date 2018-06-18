@@ -20,7 +20,7 @@ class AdminAppController extends AppController
         $this->template = "admin";
         $app = App::getInstance();
         if(!isset($_SESSION['auth'])){
-            header('Location: index.php?p=login');
+            url('utilisateurs.login');
         }
     }
 
@@ -29,7 +29,7 @@ class AdminAppController extends AppController
             $a = [
                 'email'	=> $_SESSION['auth']->email
             ];
-            $sql = "SELECT * FROM users WHERE email=:email AND function_id=1";
+            $sql = "SELECT * FROM utilisateurs WHERE email=:email AND function_id=1";
             $req = $this->db->getPDO()->prepare($sql);
             $req->execute($a);
             $exist = $req->rowCount($sql);
@@ -44,7 +44,7 @@ class AdminAppController extends AppController
             $a = [
                 'email'	=> $_SESSION['auth']->email
             ];
-            $sql = "SELECT * FROM users WHERE email=:email AND function_id=2";
+            $sql = "SELECT * FROM utilisateurs WHERE email=:email AND function_id=2";
             $req = $this->db->getPDO()->prepare($sql);
             $req->execute($a);
             $exist = $req->rowCount($sql);

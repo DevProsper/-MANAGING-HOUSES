@@ -2,6 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
+use App\Controller\Admin\TypesController;
 use App\Controller\PostsController;
 use App\Controller\UsersController;
 
@@ -33,7 +34,7 @@ switch($module){
 	//FRONT END
 	case 'home':
 		$controller = new PostsController();
-		$controller->paginnate();
+		$controller->index();
 		break;
 	case 'posts.category':
 		$controller = new PostsController();
@@ -52,6 +53,10 @@ switch($module){
 		$controller = new UsersController();
 		$controller->logout();
 		break;
+	//GESTION DES POSTS ADMINISTRATION
+	case 'utilisateurs.login':
+		$controller = new \App\Controller\UtilisateursController();
+		$controller->login();
 	//GESTION DES POSTS ADMINISTRATION
 	case 'admin.posts.index':
 		$controller = new \App\Controller\Admin\PostsController();
@@ -91,22 +96,42 @@ switch($module){
 		$controller = new \App\Controller\Admin\CategoriesController();
 		$controller->delete();
 		break;
-	//GESTION DES UTILISATEURS
-	case 'users.forget':
-		$controller = new UsersController();
-		$controller->forgetPassword();
+	//GESTION D'ARRONDISSEMENT ADMINISTRATION
+	case 'admin.arrond.index':
+		$controller = new \App\Controller\Admin\ArrondissementsController();
+		$controller->index();
 		break;
-	case 'users.register':
-		$controller = new UsersController();
-		$controller->register();
+	case 'admin.arrond.edit':
+		$controller = new \App\Controller\Admin\ArrondissementsController();
+		$controller->edit();
 		break;
-	case 'users.registe':
-		$controller = new UsersController();
-		$controller->register2();
+	case 'admin.arrond.add':
+		$controller = new \App\Controller\Admin\ArrondissementsController();
+		$controller->add();
 		break;
-	case 'users.reset':
-		$controller = new UsersController();
-		$controller->resetPassword();
+	case 'admin.arrond.delete':
+		$controller = new \App\Controller\Admin\ArrondissementsController();
+		$controller->delete();
+		break;
+	//GESTION DE TYPES DE BIEN
+	case 'admin.types_bien.index':
+		$controller = new TypesController();
+		$controller->index();
+		break;
+	case 'admin.types_bien.add':
+		$controller = new TypesController();
+		$controller->add();
+		break;
+	case 'admin.types_bien.edit':
+		$controller = new TypesController();
+		$controller->edit();
+		break;
+	case 'admin.types_bien.delete':
+		$controller = new TypesController();
+		$controller->delete();
+	case 'users.delete':
+		$controller = new TypesController();
+		$controller->delete();
 		break;
 	default:
 		$controller = new \App\Controller\AppController();

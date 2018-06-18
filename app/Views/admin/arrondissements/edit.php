@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>EDITER LA CATEGORIE</h2>
+        <h2>EDITER L'ARRONDISSEMENT</h2>
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -33,6 +33,11 @@
                                 <div class="form-group">
                                     <?= $form->input('slug', 'Slug'); ?>
                                 </div>
+                                <div class="form-group">
+                                    <?= $form->select('id_ville', 'Ville', $categories_list); ?>
+                                </div>
+                                <label>Public</label>
+                                <?= $form->input2('poster', ['type' => 'checkbox']); ?>
                                 <div class="input-group-btn">
                                     <button type="submit" name="submit" class="btn btn-sm btn-primary">Sauvegarder</button>
                                 </div>

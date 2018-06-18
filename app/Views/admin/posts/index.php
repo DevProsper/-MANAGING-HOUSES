@@ -22,7 +22,7 @@
 	</div><br>
 	<div class="row">
 		<div class="col-lg-12">
-			<a href="index.php?module=admin.posts.add" class="btn btn-primary btn-md"><i class="fa fa-plus"></i> Ajouter un post</a><br><br>
+			<a href="index.php?module=admin.posts.add" class="btn btn-primary btn-md"><i class="fa fa-plus"></i> Ajouter un bien</a><br><br>
 			<div class="ibox">
 				<div class="ibox-content">
 					<table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
@@ -30,7 +30,11 @@
 						<tr>
 
 							<th>#</th>
-							<th data-hide="phone,tablet" >Date de commande</th>
+							<th data-hide="phone,tablet" >Titre</th>
+							<th data-hide="phone,tablet" >prix</th>
+							<th data-hide="phone,tablet" >Categorie</th>
+							<th data-hide="phone,tablet" >Propriétaire</th>
+							<th data-hide="phone,tablet" >status</th>
 							<th class="text-right">Action</th>
 
 						</tr>
@@ -41,9 +45,14 @@
 							?>
 							<tr>
 								<td><?= $posts['id']?></td>
-								<td><?= $posts['title']?></td>
+								<td><?= $posts['titre']?></td>
+								<td><?= $posts['id']?></td>
+								<td><?= $posts['id_utilisateur']?></td>
+								<td><?= $posts['id']?></td>
+								<td><?= $posts['titre']?></td>
 								<td class="text-right">
 									<div class="btn-group">
+										<a href="index.php?page=admin.posts.view&id=<?= $posts['id']?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Voir</a>
 										<a href="index.php?module=admin.posts.edit&id=<?= $posts['id']?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Editer</a>
 										<form action="index.php?module=admin.posts.delete" style="display: inline;" method="post">
 											<input type="hidden" name="id" value="<?= $posts['id']?>">

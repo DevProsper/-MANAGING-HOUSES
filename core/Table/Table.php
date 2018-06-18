@@ -230,11 +230,11 @@ class Table
     }
 
     public function extra(){
-        $select = $this->db->getPDO()->query("SELECT id, name FROM $this->table ORDER BY name ASC");
+        $select = $this->db->getPDO()->query("SELECT id, nom FROM $this->table ORDER BY nom ASC");
         $table_field = $select->fetchAll();
         $table_field_list = array();
         foreach ($table_field as $filed) {
-            $table_field_list[$filed['id']] = $filed['name'];
+            $table_field_list[$filed['nom']] = $filed['nom'];
         }
         return $table_field_list;
     }

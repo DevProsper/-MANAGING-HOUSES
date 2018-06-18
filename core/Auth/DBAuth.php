@@ -58,13 +58,13 @@ class DBAuth
      * @internal param null $remenber
      */
     public function login($email, $password){
-        $user = $this->db->prepare('SELECT * FROM users WHERE email = ?', [$email], null, true);
+        $user = $this->db->prepare('SELECT * FROM utilisateurs WHERE email = ?', [$email], null, true);
         //$user = $user->fetch();
         if($user){
-            if($user->password === sha1($password)){
+            if($user->password === $password){
                 $_SESSION['auth'] = $user;
             }else{
-                //throw new \Exception('Cet utilisateur n\'existe pas ');
+                //throw new \Exception('Cet utilisateurs n\'existe pas ');
             }
         }
         return false;
@@ -73,16 +73,16 @@ class DBAuth
 
     /**
      * Simple et efficace pour géré le système de rappelle de mot de passse
-     * Un email sera envoyer à l'utilisateur et le rédirigera vers la page de réinitialisation du mot de passe
+     * Un email sera envoyer à l'utilisateurs et le rédirigera vers la page de réinitialisation du mot de passe
      * @param $email
      * @return bool
      */
     public function forgetPassword($email){
-        $user = $this->db->prepare("SELECT * FROM users WHERE  email = ?", [$email], null, true);
+        $user = $this->db->prepare("SELECT * FROM utilisateurs WHERE  email = ?", [$email], null, true);
         if($user){
             if($user->email === $email){
                 $reset_token = str_random(60);
-                $req = $this->db->getPDO()->prepare("UPDATE users SET reset_token = ? , reset_at = NOW()
+                $req = $this->db->getPDO()->prepare("UPDATE utilisateurs SET reset_token = ? , reset_at = NOW()
             WHERE id = ?");
                 $req->execute([$reset_token, $user->id]);
                 mail($email, "Reinitialisation du mot de passe",
@@ -95,7 +95,7 @@ class DBAuth
     }
 
     /**
-     * Permet à réinitialiser le mot de passe de l'utilisateur
+     * Permet à réinitialiser le mot de passe de l'utilisateurs
      * @param $id
      * @param $token
      * @param $password
@@ -128,7 +128,7 @@ class DBAuth
     }
 
     /**
-     *Verifie si la cookie existe et évite l'utilisateur de se connecté à nouveau
+     *Verifie si la cookie existe et évite l'utilisateurs de se connecté à nouveau
      */
     public function reconnect_from_cookie(){
         if (isset($_COOKIE['remenber'])) {

@@ -20,45 +20,47 @@ class PostTable extends Table
 
     public function last(){
         return $this->db->getPDO()->query("
-            SELECT posts.id, posts.title, posts.content, posts.created,posts.category_id, categories.name as category
+            SELECT posts.id, posts.titre, posts.contenu, 
+            posts.creation,posts.id_categorie,categories.nom as categorie
             FROM posts
             LEFT JOIN categories
-            ON posts.category_id = categories.id
-            ORDER BY posts.created DESC
+            ON posts.id_categorie = categories.id
+            ORDER BY posts.creation DESC
         ");
     }
 
     public function lastP($offset,$limit){
         return $this->db->getPDO()->query("
-            SELECT posts.id, posts.title, posts.content, posts.created,posts.category_id, categories.name as category
+            SELECT posts.id, posts.titre, posts.contenu,posts.id_utilisateur,
+            posts.creation,posts.id_categorie, categories.nom as categorie
             FROM posts
             LEFT JOIN categories
-            ON posts.category_id = categories.id
-            ORDER BY posts.created DESC LIMIT $offset,$limit
+            ON posts.id_categorie = categories.id
+            ORDER BY posts.creation DESC LIMIT $offset,$limit
         ");
     }
 
     public function findWithCategory($id){
         return $this->query("
-          SELECT posts.id,posts.title, posts.content,posts.category_id, 
-          categories.name as category
+          SELECT posts.id,posts.titre, posts.contenu,posts.categorie, 
+          categories.nom as categorie
           FROM posts
           LEFT JOIN categories
-          ON categories.id = posts.category_id
+          ON categories.nom = posts.categorie
           WHERE posts.id = ?
-          ORDER BY posts.created DESC
+          ORDER BY posts.creation DESC
           ", [$id], true);
     }
 
     public function lastByCategory($category_id){
         return $this->query("
-          SELECT posts.id,posts.title, posts.content,posts.category_id, 
-          categories.name as category
+          SELECT posts.id,posts.titre, posts.contenu,posts.categorie, 
+          categories.nom as categorie
           FROM posts
           LEFT JOIN categories
-          ON categories.id = posts.category_id
-          WHERE category_id = ?
-          ORDER BY posts.created DESC
+          ON categories.nom = posts.categorie
+          WHERE categorie = ?
+          ORDER BY posts.creation DESC
           ", [$category_id]);
     }
 
@@ -80,7 +82,7 @@ class PostTable extends Table
     }
 
     public function export(){
-        $sql = "SELECT id as Id,title as Titre,content as Contenu FROM posts";
+        $sql = "SELECT id as Id,titre as Titre,contenu as Contenu FROM posts";
         $req = $this->db->getPDO()->prepare($sql);
         $req->execute();
         return $req->fetchAll();

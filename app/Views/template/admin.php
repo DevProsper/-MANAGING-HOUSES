@@ -15,6 +15,9 @@
 	<link href="public/admin/css/plugins/summernote/summernote.css" rel="stylesheet">
 	<link href="public/admin/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
 
+	<script type="text/javascript" src="public/js/jquery.min.js"></script>
+	<script type="text/javascript" src="public/js/js.js"></script>
+
 
 	<!-- Toastr style -->
 

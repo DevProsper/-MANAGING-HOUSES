@@ -71,6 +71,10 @@ switch($module){
 		$controller = new \App\Controller\Admin\PostsController();
 		$controller->add();
 		break;
+	case 'admin.posts.add2':
+		$controller = new \App\Controller\Admin\PostsController();
+		$controller->addAjax();
+		break;
 	case 'admin.posts.delete':
 		$controller = new \App\Controller\Admin\PostsController();
 		$controller->delete();

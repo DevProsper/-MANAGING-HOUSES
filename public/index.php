@@ -2,6 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
+use app\Controller\Admin\RolesController;
 use App\Controller\Admin\TypesController;
 use App\Controller\PostsController;
 use App\Controller\UsersController;
@@ -129,8 +130,23 @@ switch($module){
 	case 'admin.types_bien.delete':
 		$controller = new TypesController();
 		$controller->delete();
-	case 'users.delete':
-		$controller = new TypesController();
+		break;
+
+	//GESTION DE ROLES
+	case 'admin.roles.index':
+		$controller = new \App\Controller\Admin\RolesController();
+		$controller->index();
+		break;
+	case 'admin.roles.add':
+		$controller = new \App\Controller\Admin\RolesController();
+		$controller->add();
+		break;
+	case 'admin.roles.edit':
+		$controller = new \App\Controller\Admin\RolesController();
+		$controller->edit();
+		break;
+	case 'admin.roles.delete':
+		$controller = new \App\Controller\Admin\RolesController();
 		$controller->delete();
 		break;
 	default:

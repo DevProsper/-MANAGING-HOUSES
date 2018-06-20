@@ -95,6 +95,7 @@ class PostsController extends AdminAppController
         }
 
         $categories_list = $this->Category->extract('id', 'nom');
+        $arrondissement_list = $this->Arrondissement->extract('id', 'nom');
         $form = new BootstrapForm($_POST);
         $this->render('admin.posts.edit', compact('form', 'categories_list','errors','arrondissement_list'));
 

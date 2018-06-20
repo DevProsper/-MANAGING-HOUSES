@@ -108,6 +108,14 @@ class AppController extends Controller
         return $statement;
     }
 
+    public function paginateRole($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Role->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
     /**
      * Verifie si la session existe
      * @return bool

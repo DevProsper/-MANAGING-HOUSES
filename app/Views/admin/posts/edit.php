@@ -40,10 +40,10 @@
                                     <?= $form->select('id_categorie', 'Categories', $categories_list); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->select('id_ville', 'Ville', $arrondissement_list); ?>
+                                    <?= $form->select('id_ville', 'Ville', $categories_list); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->select('id_arrondissement', 'Arrondissement', $categories_list); ?>
+                                    <?= $form->select('id_arrondissement', 'Arrondissement', $arrondissement_list); ?>
                                 </div>
                                 <div class="form-group">
                                     <?= $form->select('id_quartier', 'Quartier', $categories_list); ?>

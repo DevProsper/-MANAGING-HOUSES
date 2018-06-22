@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-lg-10">
-		<h2>GESTION DE ROLES DES UTILISATEURS</h2>
+		<h2>GESTION DE ROLE DES UTILISATEURS</h2>
 	</div>
 	<div class="col-lg-12">
 		<?= flash(); ?>
@@ -12,7 +12,7 @@
 			<form method="post" class="pull-right mail-search">
 				<div class="input-group">
 					<input type="text" class="form-control input-sm"
-						   name="query" placeholder="Nom ou la categorie">
+						   name="query" placeholder="Recherche par nom">
 					<div class="input-group-btn">
 						<input type="submit" class="btn btn-sm btn-primary" value="Rechercher">
 					</div>
@@ -22,7 +22,7 @@
 	</div><br>
 	<div class="row">
 		<div class="col-lg-12">
-			<a href="index.php?module=admin.roles.add" class="btn btn-primary btn-md"><i class="fa fa-plus"></i> Ajouter un bien</a><br><br>
+			<a href="index.php?module=admin.roles.add" class="btn btn-primary btn-md"><i class="fa fa-plus"></i> Ajouter un role</a><br><br>
 			<div class="ibox">
 				<div class="ibox-content">
 					<table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">

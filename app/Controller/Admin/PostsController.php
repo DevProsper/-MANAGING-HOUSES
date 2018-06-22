@@ -95,7 +95,8 @@ class PostsController extends AdminAppController
         }
 
         $categories_list = $this->Category->extract('id', 'nom');
-        $arrondissement_list = $this->Arrondissement->extract('id', 'nom');
+        $arrondissement_list = $this->Arrondissement->extra();
+        //$categories_list = $this->Category->extra();
         $form = new BootstrapForm($_POST);
         $this->render('admin.posts.edit', compact('form', 'categories_list','errors','arrondissement_list'));
 
@@ -110,7 +111,6 @@ class PostsController extends AdminAppController
             $q = $_POST['continent_id'];
             $sql = "select * from countries where continent_id=".$q." order by country";
             //$qry = "select * from countries where continent_id=".$_POST['continent_id']." order by country";
-            var_dump($sql);
             $reponse = $this->db->getPDO()->prepare($sql);
             $reponse->execute($q);
             $count = $reponse->rowCount();
@@ -209,9 +209,10 @@ class PostsController extends AdminAppController
         }
         $post = $this->Post->find($_GET['id']);
         $categories_list = $this->Category->extract('id', 'nom');
+        $arrondissement_list = $this->Arrondissement->extra();
         //$categories_list = $this->Category->extra();
         $form = new BootstrapForm($post);
-        $this->render('admin.posts.edit', compact('form', 'categories_list'));
+        $this->render('admin.posts.edit', compact('form', 'categories_list','arrondissement_list'));
     }
 
     public function delete(){

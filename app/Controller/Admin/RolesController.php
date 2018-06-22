@@ -24,11 +24,7 @@ class RolesController extends AdminAppController
         if(isset($_POST['query'])){
             $query = $_POST['query'];
             $q = '%'.$query.'%';
-            $sql = "SELECT roles.id,roles.nom,
-            utilisateurs.nom as utilisateur
-            FROM roles
-            LEFT JOIN utilisateurs
-            ON roles.id_utilisateur = utilisateurs.id
+            $sql = $this->Role->sql."
             WHERE roles.nom LIKE '%$query%'
             ORDER BY roles.creation DESC";
             $sql = $this->db->getPDO()->prepare($sql);
@@ -92,7 +88,7 @@ class RolesController extends AdminAppController
                 'creation'  => date('Y-m-d H:i:s')
             ]);
             if ($result) {
-                setFlash("Le role a bien été modifié");
+                setFlash("Le role a bien été modifier");
                 urlAdmin('roles.index');
             }
         }

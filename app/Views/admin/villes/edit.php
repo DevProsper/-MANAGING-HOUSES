@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>EDITER LE BIEN</h2>
+        <h2>EDITER LA VILLE</h2>
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -26,15 +26,12 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-8 b-r">
-                            <form method="post" action=" ">
+                            <form method="post" action="">
                                 <div class="form-group">
                                     <?= $form->input('nom', 'Nom'); ?>
                                 </div>
                                 <div class="form-group">
                                     <?= $form->input('slug', 'Slug'); ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= $form->select('id_arrondissement', 'Arrondissement', $arrondissement_list); ?>
                                 </div>
                                 <div class="form-group">
                                     <?= $form->select('id_statut', 'Etat', $etat_list); ?>
@@ -43,9 +40,6 @@
                                     <button type="submit" name="submit" class="btn btn-sm btn-primary">Sauvegarder</button>
                                 </div>
                             </form>
-                        </div>
-                        <div class="col-sm-4 b-r">
-
                         </div>
                     </div>
                 </div>

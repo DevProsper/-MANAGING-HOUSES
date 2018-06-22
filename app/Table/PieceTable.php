@@ -15,22 +15,26 @@ class PieceTable extends Table
 {
     protected $table = "pieces";
 
+    public $sql = "SELECT pieces.id, pieces.nombre,
+            utilisateurs.nom as utilisateur
+            FROM pieces
+            LEFT JOIN utilisateurs
+            ON pieces.id_utilisateur = utilisateurs.id";
+
     /**
      *Récupère les derniers pieces
      * @return array
      */
 
     public function last(){
-        return $this->db->getPDO()->query("
-            SELECT * FROM pieces
-            ORDER BY pieces.creation DESC
+        return $this->db->getPDO()->query($this->sql."
+            ORDER BY pieces.nombre ASC
         ");
     }
 
     public function lastP($offset,$limit){
-        return $this->db->getPDO()->query("
-            SELECT * FROM pieces
-            ORDER BY pieces.creation DESC LIMIT $offset,$limit
+        return $this->db->getPDO()->query($this->sql."
+            ORDER BY pieces.nombre ASC LIMIT $offset,$limit
         ");
     }
 

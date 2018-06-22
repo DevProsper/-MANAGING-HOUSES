@@ -9,9 +9,9 @@
             <?php if (!empty($errors)): ?>
                 <div class="alert alert-danger">
                     <?php
-                    foreach ($errors as $error) {
-                        echo $error."<br/>";
-                    }
+                        foreach ($errors as $error) {
+                            echo $error."<br/>";
+                        }
                     ?>
                 </div>
             <?php endif ?>
@@ -32,6 +32,9 @@
                                 </div>
                                 <div class="form-group">
                                     <?= $form->input('slug', 'Slug'); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?= $form->select('id_statut', 'Etat', $etat_list); ?>
                                 </div>
                                 <div class="input-group-btn">
                                     <button type="submit" name="submit" class="btn btn-sm btn-primary">Sauvegarder</button>

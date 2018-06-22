@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>GESTION DE TYPES DE BIEN</h2>
+        <h2>ETAT DES POSTS</h2>
     </div>
     <div class="col-lg-12">
         <?= flash(); ?>

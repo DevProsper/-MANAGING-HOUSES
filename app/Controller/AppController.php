@@ -28,6 +28,7 @@ class AppController extends Controller
         $this->loadModel('Post');
         $this->loadModel('Quartier');
         $this->loadModel('Role');
+        $this->loadModel('Statut');
         $this->loadModel('Type');
         $this->loadModel('Utilisateur');
         $this->loadModel('Ville');
@@ -100,6 +101,14 @@ class AppController extends Controller
         return $statement;
     }
 
+    public function paginatePiece($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Piece->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
     public function paginateType($current2,$nbPage2,$perPage){
         $perPage = $this->perPage($perPage);
         $nbPage = $nbPage2;
@@ -113,6 +122,30 @@ class AppController extends Controller
         $nbPage = $nbPage2;
         $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
         $statement = $this->Role->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
+    public function paginateVille($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Ville->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
+    public function paginateQuartier($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Quartier->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
+    public function paginateStatut($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Statut->lastP($firstOpage,$perPage);
         return $statement;
     }
 

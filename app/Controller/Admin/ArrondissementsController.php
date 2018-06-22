@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: DevProsper
@@ -24,11 +25,7 @@ class ArrondissementsController extends AdminAppController
         if(isset($_POST['query'])){
             $query = $_POST['query'];
             $q = '%'.$query.'%';
-            $sql = "SELECT arrondissements.id,arrondissements.nom,arrondissements.slug,
-            villes.slug as ville
-            FROM arrondissements
-            LEFT JOIN villes
-            ON arrondissements.id_ville = villes.id
+            $sql = $this->Arrondissement->sql . "
             WHERE arrondissements.nom LIKE '%$query%' 
             ORDER BY arrondissements.creation DESC";
             $sql = $this->db->getPDO()->prepare($sql);
@@ -57,7 +54,7 @@ class ArrondissementsController extends AdminAppController
             $nom = htmlspecialchars(trim($_POST['nom']));
             $id_ville = htmlspecialchars(trim($_POST['id_ville']));
             $slug = htmlspecialchars(trim($_POST['slug']));
-            $poster = htmlspecialchars(trim($_POST['poster']));
+            $id_statut = htmlspecialchars(trim($_POST['id_statut']));
 
             $errors = [];
             if (empty($nom)|| empty($slug)) {
@@ -68,7 +65,7 @@ class ArrondissementsController extends AdminAppController
                     'nom' => $nom,
                     'slug'  => $slug,
                     'id_ville'  => $id_ville,
-                    'poster'  => $poster,
+                    'id_statut'  => $id_statut,
                     'id_utilisateur'  => $_SESSION['auth']->id,
                     'creation'  => date('Y-m-d H:i:s')
                 ]);
@@ -79,9 +76,10 @@ class ArrondissementsController extends AdminAppController
             }
         }
 
-        $categories_list = $this->Category->extract('id', 'nom');
+        $statut_list = $this->Statut->extra();
+        $ville_list = $this->Ville->extra();
         $form = new BootstrapForm($_POST);
-        $this->render('admin.arrondissements.edit', compact('form', 'categories_list','errors'));
+        $this->render('admin.arrondissements.edit', compact('form', 'categories_list','errors','statut_list','ville_list'));
 
     }
 
@@ -90,16 +88,16 @@ class ArrondissementsController extends AdminAppController
             $nom = htmlspecialchars(trim($_POST['nom']));
             $id_ville = htmlspecialchars(trim($_POST['id_ville']));
             $slug = htmlspecialchars(trim($_POST['slug']));
-            $poster = htmlspecialchars(trim($_POST['poster']));
+            $id_statut = htmlspecialchars(trim($_POST['id_statut']));
 
             $errors = [];
-            if (empty($nom)|| empty($contenu)) {
+            if (empty($nom)|| empty($slug)) {
                 $errors['empty'] = "Tous les champs sont obligatoires";
             }
             $result = $this->Arrondissement->update($_GET['id'],[
                 'nom' => $nom,
                 'slug'  => $slug,
-                'poster'  => $poster,
+                'id_statut'  => $id_statut,
                 'id_ville'  => $id_ville,
                 'id_utilisateur'  => $_SESSION['auth']->id,
                 'creation'  => date('Y-m-d H:i:s')
@@ -109,11 +107,13 @@ class ArrondissementsController extends AdminAppController
                 urlAdmin('arrond.index');
             }
         }
+
+        $statut_list = $this->Statut->extra();
+        $ville_list = $this->Ville->extra();
         $post = $this->Arrondissement->find($_GET['id']);
-        $categories_list = $this->Category->extract('id', 'nom');
         //$categories_list = $this->Category->extra();
         $form = new BootstrapForm($post);
-        $this->render('admin.arrondissements.edit', compact('form', 'categories_list'));
+        $this->render('admin.arrondissements.edit', compact('form', 'categories_list','statut_list','ville_list'));
     }
 
     public function delete(){

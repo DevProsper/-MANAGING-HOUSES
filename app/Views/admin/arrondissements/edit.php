@@ -34,10 +34,11 @@
                                     <?= $form->input('slug', 'Slug'); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->select('id_ville', 'Ville', $categories_list); ?>
+                                    <?= $form->select('id_ville', 'Ville', $ville_list); ?>
                                 </div>
-                                <label>Public</label>
-                                <?= $form->input2('poster', ['type' => 'checkbox']); ?>
+                                <div class="form-group">
+                                    <?= $form->select('id_statut', 'Etat', $statut_list); ?>
+                                </div>
                                 <div class="input-group-btn">
                                     <button type="submit" name="submit" class="btn btn-sm btn-primary">Sauvegarder</button>
                                 </div>

@@ -15,29 +15,24 @@ class TypeTable extends Table
 {
     protected $table = "types_bien";
 
+    public $sql = "SELECT types_bien.id, types_bien.nom,
+            utilisateurs.nom as utilisateur
+            FROM types_bien
+            LEFT JOIN utilisateurs
+            ON types_bien.id_utilisateur = utilisateurs.id";
     /**
      *Récupère les derniers types_bien
      * @return array
      */
 
     public function last(){
-        return $this->db->getPDO()->query("
-            SELECT types_bien.id, types_bien.nom,
-            utilisateurs.nom as utilisateur
-            FROM types_bien
-            LEFT JOIN utilisateurs
-            ON types_bien.id_utilisateur = utilisateurs.id
+        return $this->db->getPDO()->query($this->sql."
             ORDER BY types_bien.creation DESC
         ");
     }
 
     public function lastP($offset,$limit){
-        return $this->db->getPDO()->query("
-            SELECT types_bien.id, types_bien.nom,
-            utilisateurs.nom as utilisateur
-            FROM types_bien
-            LEFT JOIN utilisateurs
-            ON types_bien.id_utilisateur = utilisateurs.id
+        return $this->db->getPDO()->query($this->sql."
             ORDER BY types_bien.creation DESC LIMIT $offset,$limit
         ");
     }

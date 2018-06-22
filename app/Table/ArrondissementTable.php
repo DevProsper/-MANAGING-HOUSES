@@ -15,27 +15,30 @@ class ArrondissementTable extends Table
 {
     protected $table = "arrondissements";
 
+    public $sql = "SELECT arrondissements.id,arrondissements.nom,arrondissements.slug,
+            villes.slug as ville,statuts.nom as statut,
+            utilisateurs.nom as utilisateur
+            FROM arrondissements
+            LEFT JOIN villes
+            ON arrondissements.id_ville = villes.id
+            LEFT JOIN statuts
+            ON arrondissements.id_statut = statuts.id
+            LEFT JOIN utilisateurs
+            ON arrondissements.id_utilisateur = utilisateurs.id";
+
     /**
      *Récupère les derniers arrondissements
      * @return array
      */
 
     public function last(){
-        return $this->db->getPDO()->query("
-            SELECT arrondissements.id, arrondissements.nom,
-            villes.nom as ville FROM arrondissements
-            LEFT JOIN villes
-            ON arrondissements.id_ville = villes.id
+        return $this->db->getPDO()->query($this->sql ."
             ORDER BY arrondissements.creation DESC
         ");
     }
 
     public function lastP($offset,$limit){
-        return $this->db->getPDO()->query("
-            SELECT arrondissements.id, arrondissements.nom, 
-            villes.nom as ville FROM arrondissements
-            LEFT JOIN villes
-            ON arrondissements.id_ville = villes.id
+        return $this->db->getPDO()->query($this->sql."
             ORDER BY arrondissements.creation DESC LIMIT $offset,$limit
         ");
     }

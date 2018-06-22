@@ -15,29 +15,25 @@ class RoleTable extends Table
 {
     protected $table = "roles";
 
+    public $sql = "SELECT roles.id, roles.nom,
+            utilisateurs.nom as utilisateur
+            FROM roles
+            LEFT JOIN utilisateurs
+            ON roles.id_utilisateur = utilisateurs.id";
+
     /**
      *Récupère les derniers roles
      * @return array
      */
 
     public function last(){
-        return $this->db->getPDO()->query("
-            SELECT roles.id, roles.nom,
-            utilisateurs.nom as utilisateur
-            FROM roles
-            LEFT JOIN utilisateurs
-            ON roles.id_utilisateur = utilisateurs.id
+        return $this->db->getPDO()->query($this->sql."
             ORDER BY roles.creation DESC
         ");
     }
 
     public function lastP($offset,$limit){
-        return $this->db->getPDO()->query("
-            SELECT roles.id, roles.nom,
-            utilisateurs.nom as utilisateur
-            FROM roles
-            LEFT JOIN utilisateurs
-            ON roles.id_utilisateur = utilisateurs.id
+        return $this->db->getPDO()->query($this->sql."
             ORDER BY roles.creation DESC LIMIT $offset,$limit
         ");
     }

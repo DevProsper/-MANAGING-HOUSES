@@ -1,9 +1,9 @@
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-lg-10">
-		<h2>GESTION DES ARRENDISSEMENTS</h2>
+		<h2>GESTION D'ARRENDISSEMENT</h2>
 	</div>
 	<div class="col-lg-12">
-		Flash
+
 	</div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
@@ -39,6 +39,7 @@
 							<th data-hide="phone,tablet" >Slug</th>
 							<th data-hide="phone,tablet" >Ville</th>
 							<th data-hide="phone,tablet" >status</th>
+							<th data-hide="phone,tablet" >Utilisateur</th>
 							<th class="text-right">Action</th>
 						</tr>
 						</thead>
@@ -48,8 +49,9 @@
 								<td><?= $arrondissement['id'] ?></td>
 								<td><?= $arrondissement['nom'] ?></td>
 								<td><?= $arrondissement['slug'] ?></td>
-								<td><?= $arrondissement['slug'] ?></td>
 								<td><?= $arrondissement['ville'] ?></td>
+								<td><?= $arrondissement['utilisateur'] ?></td>
+								<td><?= $arrondissement['statut'] ?></td>
 								<td class="text-right">
 									<div class="btn-group">
 										<a href="index.php?page=admin.arrondissements.view&id=<?= $arrondissement['id']?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Voir</a>
@@ -69,6 +71,6 @@
 
 				</div>
 			</div>
-			Nav
+
 		</div>
 	</div></div></div></div>

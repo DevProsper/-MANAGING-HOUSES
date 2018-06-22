@@ -20,11 +20,7 @@ class CategoriesController extends AdminAppController
         if(isset($_POST['query'])){
             $query = $_POST['query'];
             $q = '%'.$query.'%';
-            $sql = "SELECT categories.id,categories.nom,categories.slug,
-            utilisateurs.nom as utilisateur
-            FROM categories
-            LEFT JOIN utilisateurs
-            ON utilisateurs.id = categories.id_utilisateur 
+            $sql = $this->Category->sql."
             WHERE categories.nom 
             LIKE '%$query%' ORDER BY categories.creation DESC";
             $sql = $this->db->getPDO()->prepare($sql);
@@ -47,6 +43,7 @@ class CategoriesController extends AdminAppController
         if(!empty($_POST)){
             $nom = htmlspecialchars(trim($_POST['nom']));
             $slug = htmlspecialchars(trim($_POST['slug']));
+            $id_statut = htmlspecialchars(trim($_POST['id_statut']));
 
             $errors = [];
             if (empty($nom)|| empty($slug)) {
@@ -56,43 +53,50 @@ class CategoriesController extends AdminAppController
                 $result = $this->Category->create([
                     'nom' => $nom,
                     'slug'  => $slug,
+                    'id_statut'  => $id_statut,
                     'id_utilisateur'  => $_SESSION['auth']->id,
                     'creation'  => date('Y-m-d H:i:s')
                 ]);
                 if ($result) {
-                    setFlash("La categorie a bien Ã©tÃ© ajouter");
+                    setFlash("La categorie a bien été ajouter");
                     urlAdmin('categories.index');
                 }
             }
         }
 
+        $etat_list = $this->Statut->extra();
         $form = new BootstrapForm($_POST);
-        $this->render('admin.categories.edit', compact('form','errors'));
+        $this->render('admin.categories.edit', compact('form','errors','etat_list'));
     }
 
     public function edit(){
         if(!empty($_POST)){
             $nom = htmlspecialchars(trim($_POST['nom']));
             $slug = htmlspecialchars(trim($_POST['slug']));
+            $id_statut = htmlspecialchars(trim($_POST['id_statut']));
 
             $errors = [];
             if (empty($nom)|| empty($slug)) {
                 $errors['empty'] = "Tous les champs sont obligatoires";
             }
-            $result = $this->Category->update($_GET['id'],[
-                'nom' => $nom,
-                'slug'  => $slug,
-                'id_utilisateur'  => $_SESSION['auth']->id,
-                'creation'  => date('Y-m-d H:i:s')
-            ]);
-            if ($result) {
-                setFlash("La categorie a bien Ã©tÃ© modifiÃ©");
-                urlAdmin('categories.index');
+            if(empty($errors)){
+                $result = $this->Category->update($_GET['id'],[
+                    'nom' => $nom,
+                    'slug'  => $slug,
+                    'id_statut'  => $id_statut,
+                    'id_utilisateur'  => $_SESSION['auth']->id,
+                    'creation'  => date('Y-m-d H:i:s')
+                ]);
+                if ($result) {
+                    setFlash("La categorie a bien été modifier");
+                    urlAdmin('categories.index');
+                }
             }
         }
         $post = $this->Category->find($_GET['id']);
+        $etat_list = $this->Statut->extra();
         $form = new BootstrapForm($post);
-        $this->render('admin.categories.edit', compact('form'));
+        $this->render('admin.categories.edit', compact('form','errors','etat_list'));
     }
 
     public function delete(){

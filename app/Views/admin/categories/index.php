@@ -12,7 +12,7 @@
 			<form method="post" class="pull-right mail-search">
 				<div class="input-group">
 					<input type="text" class="form-control input-sm"
-						   name="query" placeholder="Nom ou la categorie">
+						   name="query" placeholder="Recherche par nom">
 					<div class="input-group-btn">
 						<input type="submit" class="btn btn-sm btn-primary" value="Rechercher">
 					</div>
@@ -33,6 +33,7 @@
 							<th data-hide="phone,tablet" >Nom</th>
 							<th data-hide="phone,tablet" >Slug</th>
 							<th data-hide="phone,tablet" >Ecris Par</th>
+							<th data-hide="phone,tablet" >Etat</th>
 							<th class="text-right">Action</th>
 
 						</tr>
@@ -46,6 +47,7 @@
 								<td><?= $categories['nom']?></td>
 								<td><?= $categories['slug']?></td>
 								<td><?= $categories['utilisateur']?></td>
+								<td><?= $categories['statut']?></td>
 								<td class="text-right">
 									<div class="btn-group">
 										<a href="index.php?module=admin.categories.edit&id=<?= $categories['id']?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Editer</a>

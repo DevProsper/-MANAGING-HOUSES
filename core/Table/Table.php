@@ -234,7 +234,7 @@ class Table
         $table_field = $select->fetchAll();
         $table_field_list = array();
         foreach ($table_field as $filed) {
-            $table_field_list[$filed['nom']] = $filed['nom'];
+            $table_field_list[$filed['id']] = $filed['nom'];
         }
         return $table_field_list;
     }

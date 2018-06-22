@@ -24,11 +24,7 @@ class TypesController extends AdminAppController
         if(isset($_POST['query'])){
             $query = $_POST['query'];
             $q = '%'.$query.'%';
-            $sql = "SELECT types_bien.id,types_bien.nom,
-            utilisateurs.nom as utilisateur
-            FROM types_bien
-            LEFT JOIN utilisateurs
-            ON types_bien.id_utilisateur = utilisateurs.id
+            $sql = $this->Type->sql."
             WHERE types_bien.nom LIKE '%$query%'
             ORDER BY types_bien.creation DESC";
             $sql = $this->db->getPDO()->prepare($sql);
@@ -41,7 +37,7 @@ class TypesController extends AdminAppController
             $perPage = 4;
             $current = 1;
             $nbPage = ceil($total/$perPage);
-            $requette = $this->paginateRole($current,$nbPage,$perPage);
+            $requette = $this->paginateType($current,$nbPage,$perPage);
             $types_bien = $this->Type->last();
             $this->render('admin.types_bien.index', compact('types_bien','requette','nbPage','current'));
         }

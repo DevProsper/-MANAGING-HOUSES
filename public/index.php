@@ -2,7 +2,6 @@
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
-use app\Controller\Admin\RolesController;
 use App\Controller\Admin\TypesController;
 use App\Controller\PostsController;
 use App\Controller\UsersController;
@@ -54,10 +53,18 @@ switch($module){
 		$controller = new UsersController();
 		$controller->logout();
 		break;
-	//GESTION DES POSTS ADMINISTRATION
+
+	/////////////////////////////////////////
+	//	ADMINISTRATION					  //
+	///////////////////////////////////////
+
+
+	//GESTION DES POSTS UTILISATEURS
 	case 'utilisateurs.login':
 		$controller = new \App\Controller\UtilisateursController();
 		$controller->login();
+
+
 	//GESTION DES POSTS ADMINISTRATION
 	case 'admin.posts.index':
 		$controller = new \App\Controller\Admin\PostsController();
@@ -79,11 +86,15 @@ switch($module){
 		$controller = new \App\Controller\Admin\PostsController();
 		$controller->delete();
 		break;
+
+
 	//LIBRAIRIE ADMINISTRATION
 	case 'admin.posts.index.excel':
 		$controller = new \App\Controller\Admin\PostsController();
 		$controller->export();
 		break;
+
+
 	//GESTION DES CATEGORIES ADMINISTRATION
 	case 'admin.categories.index':
 		$controller = new \App\Controller\Admin\CategoriesController();
@@ -101,6 +112,8 @@ switch($module){
 		$controller = new \App\Controller\Admin\CategoriesController();
 		$controller->delete();
 		break;
+
+
 	//GESTION D'ARRONDISSEMENT ADMINISTRATION
 	case 'admin.arrond.index':
 		$controller = new \App\Controller\Admin\ArrondissementsController();
@@ -118,6 +131,7 @@ switch($module){
 		$controller = new \App\Controller\Admin\ArrondissementsController();
 		$controller->delete();
 		break;
+
 	//GESTION DE TYPES DE BIEN
 	case 'admin.types_bien.index':
 		$controller = new TypesController();
@@ -153,6 +167,79 @@ switch($module){
 		$controller = new \App\Controller\Admin\RolesController();
 		$controller->delete();
 		break;
+
+	//GESTION DES VILLES
+	case 'admin.villes.index':
+		$controller = new \App\Controller\Admin\VillesController();
+		$controller->index();
+		break;
+	case 'admin.villes.add':
+		$controller = new \App\Controller\Admin\VillesController();
+		$controller->add();
+		break;
+	case 'admin.villes.edit':
+		$controller = new \App\Controller\Admin\VillesController();
+		$controller->edit();
+		break;
+	case 'admin.villes.delete':
+		$controller = new \App\Controller\Admin\VillesController();
+		$controller->delete();
+		break;
+
+	//GESTION DES QUARTIERX
+	case 'admin.quartiers.index':
+		$controller = new \App\Controller\Admin\QuartiersController();
+		$controller->index();
+		break;
+	case 'admin.quartiers.add':
+		$controller = new \App\Controller\Admin\QuartiersController();
+		$controller->add();
+		break;
+	case 'admin.quartiers.edit':
+		$controller = new \App\Controller\Admin\QuartiersController();
+		$controller->edit();
+		break;
+	case 'admin.quartiers.delete':
+		$controller = new \App\Controller\Admin\QuartiersController();
+		$controller->delete();
+		break;
+
+	//GESTION DES PIECES
+	case 'admin.pieces.index':
+		$controller = new \App\Controller\Admin\PiecesController();
+		$controller->index();
+		break;
+	case 'admin.pieces.add':
+		$controller = new \App\Controller\Admin\PiecesController();
+		$controller->add();
+		break;
+	case 'admin.pieces.edit':
+		$controller = new \App\Controller\Admin\PiecesController();
+		$controller->edit();
+		break;
+	case 'admin.pieces.delete':
+		$controller = new \App\Controller\Admin\PiecesController();
+		$controller->delete();
+		break;
+
+	//GESTION DES STATUTS
+	case 'admin.statuts.index':
+		$controller = new \App\Controller\Admin\StatutsController();
+		$controller->index();
+		break;
+	case 'admin.statuts.add':
+		$controller = new \App\Controller\Admin\StatutsController();
+		$controller->add();
+		break;
+	case 'admin.statuts.edit':
+		$controller = new \App\Controller\Admin\StatutsController();
+		$controller->edit();
+		break;
+	case 'admin.statuts.delete':
+		$controller = new \App\Controller\Admin\StatutsController();
+		$controller->delete();
+		break;
+
 	default:
 		$controller = new \App\Controller\AppController();
 		$controller->notFound();

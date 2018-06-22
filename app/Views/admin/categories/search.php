@@ -1,9 +1,8 @@
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-lg-10">
-		<h2>GESTION DES CATEGORIES</h2>
+		<h2>GESTION DES CATEGORIES DE BIEN</h2>
 	</div>
 	<div class="col-lg-12">
-		Flash
 	</div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
@@ -13,7 +12,7 @@
 			<form method="post" class="pull-right mail-search">
 				<div class="input-group">
 					<input type="text" class="form-control input-sm"
-						   name="query" placeholder="Nom ou la categorie">
+						   name="query" placeholder="Recherche par nom">
 					<div class="input-group-btn">
 						<input type="submit" class="btn btn-sm btn-primary" value="Rechercher">
 					</div>
@@ -50,7 +49,6 @@
 								<td><?= $post['utilisateur'] ?></td>
 								<td class="text-right">
 									<div class="btn-group">
-										<a href="index.php?page=admin.categories.view&id=<?= $post['id']?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Voir</a>
 										<a href="index.php?module=admin.categories.edit&id=<?= $post['id'] ?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Edit</a>
 										<form action="index.php?module=admin.categories.delete" style="display: inline;" method="post">
 											<input type="hidden" name="id" value="<?= $post['id'] ?>">
@@ -67,6 +65,5 @@
 
 				</div>
 			</div>
-			Nav
 		</div>
 	</div></div></div></div>

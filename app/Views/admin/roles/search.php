@@ -3,17 +3,16 @@
 		<h2>GESTION DE ROLE DES UTILISATEURS</h2>
 	</div>
 	<div class="col-lg-12">
-		Flash
 	</div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
 	<div class="row">
 		<div class="col-md-10">
 			<a href="index.php?module=admin.roles.index" type="submit" class="btn btn-sm btn-primary">ACTUALISE LA PAGE APRES LA RECHERCHE</a>
-			<form method="role" class="pull-right mail-search">
+			<form method="post" class="pull-right mail-search">
 				<div class="input-group">
 					<input type="text" class="form-control input-sm"
-						   name="query" placeholder="Nom ou la categorie">
+						   name="query" placeholder="Recherche par Nom">
 					<div class="input-group-btn">
 						<input type="submit" class="btn btn-sm btn-primary" value="Rechercher">
 					</div>
@@ -48,7 +47,6 @@
 								<td><?= $role['utilisateur'] ?></td>
 								<td class="text-right">
 									<div class="btn-group">
-										<a href="index.php?page=admin.roles.view&id=<?= $role['id']?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Voir</a>
 										<a href="index.php?module=admin.roles.edit&id=<?= $role['id'] ?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Edit</a>
 										<form action="index.php?module=admin.roles.delete" style="display: inline;" method="role">
 											<input type="hidden" name="id" value="<?= $role['id'] ?>">
@@ -65,6 +63,5 @@
 
 				</div>
 			</div>
-			Nav
 		</div>
 	</div></div></div></div>

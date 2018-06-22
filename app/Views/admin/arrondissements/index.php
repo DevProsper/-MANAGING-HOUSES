@@ -32,6 +32,8 @@
                             <th>#</th>
                             <th data-hide="phone,tablet" >Nom</th>
                             <th data-hide="phone,tablet" >Ville</th>
+                            <th data-hide="phone,tablet" >Utilisateur</th>
+                            <th data-hide="phone,tablet" >Statut</th>
                             <th class="text-right">Action</th>
 
                         </tr>
@@ -44,6 +46,8 @@
                                 <td><?= $arrondissements['id']?></td>
                                 <td><?= $arrondissements['nom']?></td>
                                 <td><?= $arrondissements['ville']?></td>
+                                <td><?= $arrondissements['utilisateur']?></td>
+                                <td><?= $arrondissements['statut']?></td>
                                 <td class="text-right">
                                     <div class="btn-group">
                                         <a href="index.php?module=admin.arrond.edit&id=<?= $arrondissements['id']?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Editer</a>

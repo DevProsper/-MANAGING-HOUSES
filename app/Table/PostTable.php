@@ -13,29 +13,53 @@ use PDO;
 class PostTable extends Table
 {
     protected $table = "posts";
+
+    public $sql = "
+            SELECT posts.id,
+             posts.titre,
+             posts.contenu,
+             posts.creation,
+             posts.adresse,
+             posts.prix,
+             categories.nom as categorie,
+             utilisateurs.nom as utilisateur,
+             villes.nom as ville,
+             quartiers.nom as quartier,
+             arrondissements.nom as arrondissement,
+             types_bien.nom as type_bien,
+             pieces.nombre as piece,
+             statuts.nom as statut
+            FROM posts
+            LEFT JOIN categories
+            ON posts.id_categorie = categories.id
+            LEFT JOIN utilisateurs
+            ON posts.id_utilisateur = utilisateurs.id
+            LEFT JOIN villes
+            ON posts.id_ville = villes.id
+            LEFT JOIN quartiers
+            ON posts.id_quartier = quartiers.id
+            LEFT JOIN arrondissements
+            ON posts.id_arrondissement = arrondissements.id
+            LEFT JOIN types_bien
+            ON posts.id_type_bien = types_bien.id
+            LEFT JOIN pieces
+            ON posts.id_piece = pieces.id
+            LEFT JOIN statuts
+            ON posts.id_statut = statuts.id
+            ";
     /**
      *Révupère les derniers posts
      * @return array
      */
 
     public function last(){
-        return $this->db->getPDO()->query("
-            SELECT posts.id, posts.titre, posts.contenu, 
-            posts.creation,posts.id_categorie,categories.nom as categorie
-            FROM posts
-            LEFT JOIN categories
-            ON posts.id_categorie = categories.id
+        return $this->db->getPDO()->query($this->sql."
             ORDER BY posts.creation DESC
         ");
     }
 
     public function lastP($offset,$limit){
-        return $this->db->getPDO()->query("
-            SELECT posts.id, posts.titre, posts.contenu,posts.id_utilisateur,
-            posts.creation,posts.id_categorie, categories.nom as categorie
-            FROM posts
-            LEFT JOIN categories
-            ON posts.id_categorie = categories.id
+        return $this->db->getPDO()->query($this->sql."
             ORDER BY posts.creation DESC LIMIT $offset,$limit
         ");
     }

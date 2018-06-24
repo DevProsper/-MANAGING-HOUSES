@@ -40,22 +40,22 @@
                                     <?= $form->select('id_categorie', 'Categories', $categories_list); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->select('id_ville', 'Ville', $categories_list); ?>
+                                    <?= $form->select('id_ville', 'Ville', $ville_list); ?>
                                 </div>
                                 <div class="form-group">
                                     <?= $form->select('id_arrondissement', 'Arrondissement', $arrondissement_list); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->select('id_quartier', 'Quartier', $categories_list); ?>
+                                    <?= $form->select('id_quartier', 'Quartier', $quartier_list); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->select('adresse', 'Adresse', $categories_list); ?>
+                                    <?= $form->input('adresse', 'Adresse'); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->select('id_piece', 'Nombre de piece', $categories_list); ?>
+                                    <?= $form->select('id_piece', 'Nombre de piece', $piece_list); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->select('id_type_bien', 'Type de bien', $categories_list); ?>
+                                    <?= $form->select('id_type_bien', 'Type de bien', $type_list); ?>
                                 </div>
                                 <div class="form-group">
                                     <?= $form->input('latitude', 'Latitude'); ?>
@@ -64,10 +64,10 @@
                                     <?= $form->input('longitude', 'Longitude'); ?>
                                 </div>
                                 <div class="form-group">
-                                        <?= $form->select('statut', 'Statut', $categories_list); ?>
+                                        <?= $form->select('id_statut', 'Etat', $etat_list); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->select('id_agence', 'Agence', $categories_list); ?>
+                                    <?= $form->select('id_agence', 'Agence', $agence_list); ?>
                                 </div>
                                 <div class="form-group">
                                     <label>Fichier</label>

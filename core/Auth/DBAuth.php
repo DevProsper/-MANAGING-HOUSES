@@ -61,6 +61,7 @@ class DBAuth
         $user = $this->db->prepare('SELECT * FROM utilisateurs WHERE email = ?', [$email], null, true);
         //$user = $user->fetch();
         if($user){
+            $password = sha1($password);
             if($user->password === $password){
                 $_SESSION['auth'] = $user;
             }else{
@@ -103,14 +104,15 @@ class DBAuth
      */
     public function resetPassword($id, $token,$password, $password_confirm){
         if(isset($id) || empty($id) && isset($token) || empty($token)){
-            $req = $this->db->getPDO()->prepare("SELECT * FROM users WHERE id = ? AND reset_token IS NOT NULL AND reset_token = ?
+            $req = $this->db->getPDO()->prepare("SELECT * FROM utilisateurs WHERE id = ? AND reset_token IS NOT NULL AND reset_token = ?
             AND reset_at > DATE_SUB(NOW(), INTERVAL 30 MINUTE)");
             $req->execute([$id, $token]);
             $user = $req->fetch();
             if ($user) {
                 if (!empty($password) && $password == $password_confirm) {
                     $password2 = sha1($password);
-                    $this->db->getPDO()->prepare("UPDATE users SET password = ?, reset_token = NULL, reset_at = NULL")->execute([$password2]);
+                    $this->db->getPDO()->prepare("UPDATE utilisateurs SET password = ?, reset_token = NULL, reset_at = NULL")
+                        ->execute([$password2]);
                     setFlash("Votre mot de passe a bien été modifié", "success");
                     header("Location:" .WEBSITE. "login");
                     exit();

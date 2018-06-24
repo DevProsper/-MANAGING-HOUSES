@@ -15,6 +15,27 @@ class UtilisateurTable extends Table
 {
     protected $table = "utilisateurs";
 
+    public $sql = "
+    SELECT  utilisateurs.id, 
+            utilisateurs.nom,
+            utilisateurs.prenom,
+            utilisateurs.adresse,
+            utilisateurs.tel,
+            utilisateurs.email,
+            utilisateurs.fonction,
+            utilisateurs.latitude,
+            utilisateurs.longitude,
+            utilisateurs.identite,
+            utilisateurs.id_utilisateur,
+            statuts.nom as statut,
+            roles.nom as role
+        FROM utilisateurs
+        LEFT JOIN statuts
+        ON utilisateurs.id_statut = statuts.id
+        LEFT JOIN roles
+        ON utilisateurs.id_role = roles.id
+        ";
+
     /**
      * Créer un utilisateurs
      * @param UserRepository $repository
@@ -26,6 +47,16 @@ class UtilisateurTable extends Table
             $repository->getName(),
             $repository->getUsername()
         ]);
+    }
+
+    public function extraAgence($id,$nom){
+        $select = $this->db->getPDO()->query("SELECT $id, $nom FROM $this->table WHERE id_role = 7 ORDER BY $nom ASC");
+        $table_field = $select->fetchAll();
+        $table_field_list = array();
+        foreach ($table_field as $filed) {
+            $table_field_list[$filed[$id]] = $filed[$nom];
+        }
+        return $table_field_list;
     }
 
     /**
@@ -72,5 +103,34 @@ class UtilisateurTable extends Table
     public function updateResetPassword($reset_token){
         $req = $this->db->getPDO()->prepare("UPDATE users SET reset_token = ?, reset_at = NOW() WHERE id = ?");
         return $req->execute([$reset_token]);
+    }
+
+    /**
+     *Récupère les derniers utilisateurs
+     * @return array
+     */
+
+    public function last(){
+        //Utilisateur
+        return $this->db->getPDO()->query($this->sql."
+            ORDER BY utilisateurs.creation DESC
+        ");
+    }
+
+    public function lastP($offset,$limit){
+        return $this->db->getPDO()->query($this->sql."
+            ORDER BY utilisateurs.creation DESC LIMIT $offset,$limit
+        ");
+    }
+
+    public function UtilisateurCount(){
+        return $this->tableCount();
+    }
+
+    public function export(){
+        $sql = "SELECT id as Id,nombre as Nombre FROM utilisateurs";
+        $req = $this->db->getPDO()->prepare($sql);
+        $req->execute();
+        return $req->fetchAll();
     }
 }

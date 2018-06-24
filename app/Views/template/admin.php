@@ -3,7 +3,7 @@
 
 <head>
 
-	<meta charset="utf-8">
+	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -56,9 +56,6 @@
 					<a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Tableau de bord</span> <span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
 						<li><a href="dashboard_2.html">Statistique des agences</a></li>
-						<li><a href="dashboard_3.html">Dashboard v.3</a></li>
-						<li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-						<li><a href="dashboard_5.html">Dashboard v.5 </a></li>
 					</ul>
 				</li>
 				<li class="">
@@ -71,7 +68,13 @@
 					<a href="<?= URL_ADMIN  ?>commandes.index"><i class="fa fa-th-large"></i> <span class="nav-label">Gestion d.. Commandes</span></span></a>
 				</li>
 				<li class="">
-					<a href="<?= URL_ADMIN  ?>commandes.index"><i class="fa fa-th-large"></i> <span class="nav-label">Gestion des Contacts</span></span></a>
+					<a href="<?= URL_ADMIN  ?>admins.index"><i class="fa fa-th-large"></i> <span class="nav-label">Administrateurs du site</span></span></a>
+				</li>
+				<li class="">
+					<a href="<?= URL_ADMIN  ?>agences.index"><i class="fa fa-th-large"></i> <span class="nav-label">Gestion des Agences</span></span></a>
+				</li>
+				<li class="">
+					<a href="<?= URL_ADMIN  ?>proprietaires.index"><i class="fa fa-th-large"></i> <span class="nav-label">Gestion d.. Proprietaires</span></span></a>
 				</li>
 				<li class="">
 					<a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Paramètre</span> <span class="fa arrow"></span></a>
@@ -84,6 +87,12 @@
                         <li><a href="<?= URL_ADMIN  ?>roles.index">Gestion de Role</a></li>
 						<li><a href="<?= URL_ADMIN  ?>types_bien.index">Gestion de Type de bien</a></li>
 						<li><a href="<?= URL_ADMIN  ?>statuts.index">Gestion des Etats</a></li>
+					</ul>
+				</li>
+				<li class="">
+					<a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Configuration</span> <span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+                        <li><a href="<?= URL_ADMIN  ?>arrond.index">Pagination</a></li>
 					</ul>
 				</li>
 			</ul>

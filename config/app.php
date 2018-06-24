@@ -10,4 +10,5 @@ if (count($url) == 1) {
     define('WEBROOT', $url[0] . 'Immobilier/');
 }
 $root = dirname(WEBROOT);
-define("WEBSITE", WWW_ROOT. 'index.php?module=');
+define("WWW_ROO","http://localhost/Immobilier/");
+define("WEBSITE", WWW_ROO. 'index.php?module=');

@@ -21,7 +21,6 @@ class QuartiersController extends AdminAppController
         if(isset($_POST['query'])){
             $query = $_POST['query'];
             $q = '%'.$query.'%';
-
             $sql = $this->Quartier->sql . "
             WHERE quartiers.nom
             LIKE '%$query%' ORDER BY quartiers.creation DESC";

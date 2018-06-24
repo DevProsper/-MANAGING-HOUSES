@@ -11,7 +11,7 @@ namespace App\Controller\Admin;
 use Core\Html\BootstrapForm;
 use Core\Library\Export\ExportDataExcel;
 
-class UtilisateursController extends AdminAppController
+class ProprietairesController extends AdminAppController
 {
 
     public function __construct(){
@@ -22,27 +22,27 @@ class UtilisateursController extends AdminAppController
         if(isset($_POST['query'])){
             $query = $_POST['query'];
             $q = '%'.$query.'%';
-            $sql = $this->Utilisateur->sql ."
-            WHERE utilisateurs.nom || utilisateurs.prenom
-            LIKE '%$query%' ORDER BY utilisateurs.creation DESC";
+            $sql = $this->Proprietaire->sql ."
+            WHERE id_role = 8 AND utilisateurs.nom
+            LIKE '%$query%' ORDER BY utilisateurs.nom ASC";
             $sql = $this->db->getPDO()->prepare($sql);
             $sql->execute([$q]);
             $count = $sql->rowCount();
-            $utilisateurs = $sql->fetchAll();
-            $this->render('admin.utilisateurs.search', compact('utilisateurs','count'));
+            $proprietaires = $sql->fetchAll();
+            $this->render('admin.proprietaires.search', compact('proprietaires','count'));
         }else{
-            $total = $this->Utilisateur->tableCount();
+            $total = $this->Proprietaire->tableCount();
             $perPage = 4;
             $current = 1;
             $nbPage = ceil($total/$perPage);
-            $requette = $this->paginateUtilisateur($current,$nbPage,$perPage);
-            $utilisateurs = $this->Post->all();
-            $this->render('admin.utilisateurs.index', compact('utilisateurs','requette','nbPage','current'));
+            $requette = $this->paginateProprietaire($current,$nbPage,$perPage);
+            $proprietaires = $this->Proprietaire->last();
+            $this->render('admin.proprietaires.index', compact('proprietaires','requette','nbPage','current'));
         }
     }
 
     public function export(){
-        $data = $this->Utilisateur->export();
+        $data = $this->Proprietaire->export();
         ExportDataExcel::export($data,'Export');
     }
 
@@ -51,7 +51,6 @@ class UtilisateursController extends AdminAppController
             $nom = htmlspecialchars(trim($_POST['nom']));
             $tel = htmlspecialchars(trim($_POST['tel']));
             $prenom = htmlspecialchars(trim($_POST['prenom']));
-            $id_role = htmlspecialchars(trim($_POST['id_role']));
             $adresse = htmlspecialchars(trim($_POST['adresse']));
             $password = htmlspecialchars(trim($_POST['password']));
             $identite = htmlspecialchars(trim($_POST['identite']));
@@ -64,11 +63,11 @@ class UtilisateursController extends AdminAppController
                 $errors['empty'] = "Tous les champs sont obligatoires";
             }
             if(empty($errors)){
-                $result = $this->Utilisateur->create([
+                $result = $this->Proprietaire->create([
                     'nom' => $nom,
                     'prenom'  => $prenom,
                     'tel'  => $tel,
-                    'id_role'  => $id_role,
+                    'id_role'  => '8',
                     'id_statut'  => $id_statut,
                     'adresse'  => $adresse,
                     'password'  => sha1($password),
@@ -79,16 +78,15 @@ class UtilisateursController extends AdminAppController
                     'creation'  => date('Y-m-d H:i:s')
                 ]);
                 if ($result) {
-                    setFlash("L'utilisateur a bien été ajouter");
-                    urlAdmin('utilisateurs.index');
+                    setFlash("Le proprietaire a bien été ajouter");
+                    urlAdmin('proprietaires.index');
                 }
             }
         }
 
         $etat_list = $this->Statut->extra();
-        $role_list = $this->Role->extra();
         $form = new BootstrapForm($_POST);
-        $this->render('admin.utilisateurs.edit', compact('form', 'categories_list','errors','etat_list','role_list'));
+        $this->render('admin.proprietaires.edit', compact('form', 'categories_list','errors','etat_list','role_list'));
 
     }
 
@@ -97,7 +95,6 @@ class UtilisateursController extends AdminAppController
             $nom = htmlspecialchars(trim($_POST['nom']));
             $tel = htmlspecialchars(trim($_POST['tel']));
             $prenom = htmlspecialchars(trim($_POST['prenom']));
-            $id_role = htmlspecialchars(trim($_POST['id_role']));
             $adresse = htmlspecialchars(trim($_POST['adresse']));
             $password = htmlspecialchars(trim($_POST['password']));
             $identite = htmlspecialchars(trim($_POST['identite']));
@@ -114,7 +111,7 @@ class UtilisateursController extends AdminAppController
                     'nom' => $nom,
                     'prenom'  => $prenom,
                     'tel'  => $tel,
-                    'id_role'  => $id_role,
+                    'id_role'  => '8',
                     'id_statut'  => $id_statut,
                     'adresse'  => $adresse,
                     'password'  => sha1($password),
@@ -125,24 +122,23 @@ class UtilisateursController extends AdminAppController
                     'creation'  => date('Y-m-d H:i:s')
                 ]);
                 if ($result) {
-                    setFlash("L'utilisateur a bien été modifié");
-                    urlAdmin('utilisateurs.index');
+                    setFlash("Le proprietaire a bien été modifié");
+                    urlAdmin('proprietaires.index');
                 }
             }
         }
-        $post = $this->Utilisateur->find($_GET['id']);
+        $post = $this->Proprietaire->find($_GET['id']);
         $etat_list = $this->Statut->extra();
-        $role_list = $this->Role->extra();
         //$categories_list = $this->Category->extra();
         $form = new BootstrapForm($post);
-        $this->render('admin.utilisateurs.edit', compact('form', 'categories_list','etat_list','role_list'));
+        $this->render('admin.proprietaires.edit', compact('form', 'categories_list','etat_list','role_list'));
     }
 
     public function delete(){
         if(!empty($_POST)){
             $this->Utilisateur->delete($_POST['id']);
-            setFlash("L'utilisateur a bien été supprimer");
-            urlAdmin('utilisateurs.index');
+            setFlash("Le proprietaire a bien été supprimer");
+            urlAdmin('proprietaires.index');
         }
     }
 }

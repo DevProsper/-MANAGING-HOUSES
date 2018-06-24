@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-lg-10">
-		<h2>GESTION DES COMMANDES</h2>
+		<h2>GESTION DES BIENS</h2>
 	</div>
 	<div class="col-lg-12">
 		<?= flash(); ?>
@@ -31,7 +31,7 @@
 
 							<th>#</th>
 							<th data-hide="phone,tablet" >Titre</th>
-							<th data-hide="phone,tablet" >prix</th>
+							<th data-hide="phone,tablet" >Quotien</th>
 							<th data-hide="phone,tablet" >Categorie</th>
 							<th data-hide="phone,tablet" >Propriétaire</th>
 							<th data-hide="phone,tablet" >status</th>
@@ -46,10 +46,10 @@
 							<tr>
 								<td><?= $posts['id']?></td>
 								<td><?= $posts['titre']?></td>
+								<td><?= $posts['prix']?></td>
+								<td><?= $posts['categorie']?></td>
 								<td><?= $posts['id']?></td>
-								<td><?= $posts['id_utilisateur']?></td>
-								<td><?= $posts['id']?></td>
-								<td><?= $posts['titre']?></td>
+								<td><?= $posts['utilisateur']?></td>
 								<td class="text-right">
 									<div class="btn-group">
 										<a href="index.php?page=admin.posts.view&id=<?= $posts['id']?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Voir</a>

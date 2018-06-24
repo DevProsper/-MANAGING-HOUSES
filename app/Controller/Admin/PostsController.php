@@ -21,7 +21,9 @@ class PostsController extends AdminAppController
         if(isset($_POST['query'])){
             $query = $_POST['query'];
             $q = '%'.$query.'%';
-            $sql = "SELECT * FROM posts WHERE titre LIKE '%$query%' ORDER BY posts.creation DESC";
+            $sql = $this->Post->sql . "
+            WHERE posts.titre
+            LIKE '%$query%' ORDER BY posts.creation DESC";
             $sql = $this->db->getPDO()->prepare($sql);
             $sql->execute([$q]);
             $count = $sql->rowCount();
@@ -96,9 +98,17 @@ class PostsController extends AdminAppController
 
         $categories_list = $this->Category->extract('id', 'nom');
         $arrondissement_list = $this->Arrondissement->extra();
-        //$categories_list = $this->Category->extra();
+        $ville_list = $this->Ville->extra();
+        $quartier_list = $this->Quartier->extra();
+        $piece_list = $this->Piece->extra2('id','nombre');
+        $type_list = $this->Type->extra();
+        $etat_list = $this->Statut->extra();
+        $role_list = $this->Role->extra();
+        $agence_list = $this->Utilisateur->extraAgence('id','nom');
         $form = new BootstrapForm($_POST);
-        $this->render('admin.posts.edit', compact('form', 'categories_list','errors','arrondissement_list'));
+        $this->render('admin.posts.edit', compact('form', 'categories_list','errors',
+            'arrondissement_list','ville_list','quartier_list','piece_list',
+            'type_list','etat_list','role_list','agence_list'));
 
     }
 
@@ -210,9 +220,17 @@ class PostsController extends AdminAppController
         $post = $this->Post->find($_GET['id']);
         $categories_list = $this->Category->extract('id', 'nom');
         $arrondissement_list = $this->Arrondissement->extra();
-        //$categories_list = $this->Category->extra();
+        $ville_list = $this->Ville->extra();
+        $quartier_list = $this->Quartier->extra();
+        $piece_list = $this->Piece->extra2('id','nombre');
+        $type_list = $this->Type->extra();
+        $etat_list = $this->Statut->extra();
+        $role_list = $this->Role->extra();
+        $agence_list = $this->Utilisateur->extraAgence('id','nom');
         $form = new BootstrapForm($post);
-        $this->render('admin.posts.edit', compact('form', 'categories_list','arrondissement_list'));
+        $this->render('admin.posts.edit', compact('form', 'categories_list','errors',
+            'arrondissement_list','ville_list','quartier_list','piece_list',
+            'type_list','etat_list','role_list','agence_list'));
     }
 
     public function delete(){

@@ -54,7 +54,6 @@
 								<td><?= $arrondissement['statut'] ?></td>
 								<td class="text-right">
 									<div class="btn-group">
-										<a href="index.php?page=admin.arrondissements.view&id=<?= $arrondissement['id']?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Voir</a>
 										<a href="index.php?module=admin.arrondissements.edit&id=<?= $arrondissement['id'] ?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Edit</a>
 										<form action="index.php?module=admin.arrondissements.delete" style="display: inline;" method="arrondissement">
 											<input type="hidden" name="id" value="<?= $arrondissement['id'] ?>">

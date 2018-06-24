@@ -11,7 +11,7 @@ namespace App\Controller\Admin;
 use Core\Html\BootstrapForm;
 use Core\Library\Export\ExportDataExcel;
 
-class UtilisateursController extends AdminAppController
+class AdministrateursController extends AdminAppController
 {
 
     public function __construct(){
@@ -23,26 +23,27 @@ class UtilisateursController extends AdminAppController
             $query = $_POST['query'];
             $q = '%'.$query.'%';
             $sql = $this->Utilisateur->sql ."
-            WHERE utilisateurs.nom || utilisateurs.prenom
+            WHERE utilisateurs.nom || utilisateurs.prenom || id_role = 1
+            || id_role = 2 || id_role = 3
             LIKE '%$query%' ORDER BY utilisateurs.creation DESC";
             $sql = $this->db->getPDO()->prepare($sql);
             $sql->execute([$q]);
             $count = $sql->rowCount();
-            $utilisateurs = $sql->fetchAll();
-            $this->render('admin.utilisateurs.search', compact('utilisateurs','count'));
+            $admins = $sql->fetchAll();
+            $this->render('admin.admins.search', compact('admins','count'));
         }else{
             $total = $this->Utilisateur->tableCount();
             $perPage = 4;
             $current = 1;
             $nbPage = ceil($total/$perPage);
-            $requette = $this->paginateUtilisateur($current,$nbPage,$perPage);
-            $utilisateurs = $this->Post->all();
-            $this->render('admin.utilisateurs.index', compact('utilisateurs','requette','nbPage','current'));
+            $requette = $this->paginateAdministrateur($current,$nbPage,$perPage);
+            $admins = $this->Administrateur->last();
+            $this->render('admin.admins.index', compact('admins','requette','nbPage','current'));
         }
     }
 
     public function export(){
-        $data = $this->Utilisateur->export();
+        $data = $this->Administrateur->export();
         ExportDataExcel::export($data,'Export');
     }
 
@@ -64,11 +65,11 @@ class UtilisateursController extends AdminAppController
                 $errors['empty'] = "Tous les champs sont obligatoires";
             }
             if(empty($errors)){
-                $result = $this->Utilisateur->create([
+                $result = $this->Administrateur->create([
                     'nom' => $nom,
                     'prenom'  => $prenom,
                     'tel'  => $tel,
-                    'id_role'  => $id_role,
+                    'id_role'  => '1',
                     'id_statut'  => $id_statut,
                     'adresse'  => $adresse,
                     'password'  => sha1($password),
@@ -79,17 +80,15 @@ class UtilisateursController extends AdminAppController
                     'creation'  => date('Y-m-d H:i:s')
                 ]);
                 if ($result) {
-                    setFlash("L'utilisateur a bien été ajouter");
-                    urlAdmin('utilisateurs.index');
+                    setFlash("L'aministrateur a bien été ajouter");
+                    urlAdmin('admins.index');
                 }
             }
         }
 
         $etat_list = $this->Statut->extra();
-        $role_list = $this->Role->extra();
         $form = new BootstrapForm($_POST);
-        $this->render('admin.utilisateurs.edit', compact('form', 'categories_list','errors','etat_list','role_list'));
-
+        $this->render('admin.admins.edit', compact('form','errors','etat_list'));
     }
 
     public function edit(){
@@ -110,11 +109,11 @@ class UtilisateursController extends AdminAppController
                 $errors['empty'] = "Tous les champs sont obligatoires";
             }
             if(empty($errors)){
-                $result = $this->Utilisateur->update($_GET['id'],[
+                $result = $this->Administrateur->update($_GET['id'],[
                     'nom' => $nom,
                     'prenom'  => $prenom,
                     'tel'  => $tel,
-                    'id_role'  => $id_role,
+                    'id_role'  => '1',
                     'id_statut'  => $id_statut,
                     'adresse'  => $adresse,
                     'password'  => sha1($password),
@@ -125,24 +124,22 @@ class UtilisateursController extends AdminAppController
                     'creation'  => date('Y-m-d H:i:s')
                 ]);
                 if ($result) {
-                    setFlash("L'utilisateur a bien été modifié");
-                    urlAdmin('utilisateurs.index');
+                    setFlash("L'administrateur a bien été modifié");
+                    urlAdmin('admins.index');
                 }
             }
         }
-        $post = $this->Utilisateur->find($_GET['id']);
+        $post = $this->Administrateur->find($_GET['id']);
         $etat_list = $this->Statut->extra();
-        $role_list = $this->Role->extra();
-        //$categories_list = $this->Category->extra();
         $form = new BootstrapForm($post);
-        $this->render('admin.utilisateurs.edit', compact('form', 'categories_list','etat_list','role_list'));
+        $this->render('admin.admins.edit', compact('form','etat_list'));
     }
 
     public function delete(){
         if(!empty($_POST)){
-            $this->Utilisateur->delete($_POST['id']);
-            setFlash("L'utilisateur a bien été supprimer");
-            urlAdmin('utilisateurs.index');
+            $this->Administrateur->delete($_POST['id']);
+            setFlash("L'administrateur a bien été supprimer");
+            urlAdmin('admins.index');
         }
     }
 }

@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>EDITER L'UTILISATEUR</h2>
+        <h2>EDITER LE PROPRIETAIRE</h2>
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -50,9 +50,6 @@
                                 </div>
                                 <div class="form-group">
                                     <?= $form->input('password', 'Mot de passe'); ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= $form->select('id_role', 'Role', $role_list); ?>
                                 </div>
                                 <div class="form-group">
                                     <?= $form->select('id_statut', 'Etat', $etat_list); ?>

@@ -21,6 +21,9 @@ class AppController extends Controller
     public function __construct(){
         $this->viewPath = ROOT . '/app/Views/';
         $this->loadModel('Arrondissement');
+        $this->loadModel('Administrateur');
+        $this->loadModel('Agence');
+        $this->loadModel('Proprietaire');
         $this->loadModel('Category');
         $this->loadModel('Contact');
         $this->loadModel('Depot');
@@ -146,6 +149,38 @@ class AppController extends Controller
         $nbPage = $nbPage2;
         $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
         $statement = $this->Statut->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
+    public function paginateUtilisateur($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Utilisateur->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
+    public function paginateAdministrateur($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Administrateur->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
+    public function paginateAgence($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Agence->lastP($firstOpage,$perPage);
+        return $statement;
+    }
+
+    public function paginateProprietaire($current2,$nbPage2,$perPage){
+        $perPage = $this->perPage($perPage);
+        $nbPage = $nbPage2;
+        $firstOpage = $this->parametersPaginate($current2,$perPage,$nbPage);
+        $statement = $this->Proprietaire->lastP($firstOpage,$perPage);
         return $statement;
     }
 

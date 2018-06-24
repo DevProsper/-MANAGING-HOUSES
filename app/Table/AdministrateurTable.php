@@ -11,12 +11,12 @@ namespace App\Table;
 
 use Core\Table\Table;
 
-class AgenceTable extends Table
+class AdministrateurTable extends Table
 {
     protected $table = "utilisateurs";
 
     public $sql = "
-    SELECT  utilisateurs.id,
+    SELECT  utilisateurs.id, 
             utilisateurs.nom,
             utilisateurs.prenom,
             utilisateurs.adresse,
@@ -37,7 +37,7 @@ class AgenceTable extends Table
         ";
 
     public function extraAgence($id,$nom){
-        $select = $this->db->getPDO()->query("SELECT $id, $nom FROM $this->table WHERE id_role = 7 ORDER BY $nom ASC");
+        $select = $this->db->getPDO()->query("SELECT $id, $nom FROM $this->table WHERE id_role = 1 ORDER BY $nom ASC");
         $table_field = $select->fetchAll();
         $table_field_list = array();
         foreach ($table_field as $filed) {
@@ -47,26 +47,25 @@ class AgenceTable extends Table
     }
 
     /**
-     *Récupère les derniers utilisateurs
+     *Récupère les derniers Agences crées
      * @return array
      */
 
     public function last(){
-        //Utilisateur
         return $this->db->getPDO()->query($this->sql."
-            WHERE id_role = 7
+        WHERE id_role = 1 || id_role = 2 || id_role = 3
             ORDER BY utilisateurs.creation DESC
         ");
     }
 
     public function lastP($offset,$limit){
         return $this->db->getPDO()->query($this->sql."
-            WHERE id_role = 7
+            WHERE id_role = 1 || id_role = 2 || id_role = 2
             ORDER BY utilisateurs.creation DESC LIMIT $offset,$limit
         ");
     }
 
-    public function AgenceCount(){
+    public function UtilisateurCount(){
         return $this->tableCount();
     }
 

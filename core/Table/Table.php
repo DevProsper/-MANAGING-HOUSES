@@ -85,6 +85,26 @@ class Table
         return $return;
     }
 
+    public function extra(){
+        $select = $this->db->getPDO()->query("SELECT id, nom FROM $this->table ORDER BY nom ASC");
+        $table_field = $select->fetchAll();
+        $table_field_list = array();
+        foreach ($table_field as $filed) {
+            $table_field_list[$filed['id']] = $filed['nom'];
+        }
+        return $table_field_list;
+    }
+
+    public function extra2($id,$nom){
+        $select = $this->db->getPDO()->query("SELECT $id, $nom FROM $this->table ORDER BY $nom ASC");
+        $table_field = $select->fetchAll();
+        $table_field_list = array();
+        foreach ($table_field as $filed) {
+            $table_field_list[$filed[$id]] = $filed[$nom];
+        }
+        return $table_field_list;
+    }
+
     /**
      * Mise à jour des données à partir de son id
      * @param $id
@@ -227,16 +247,6 @@ class Table
 
     public function quote($vaulue){
         $this->db->getPDO()->quote($vaulue);
-    }
-
-    public function extra(){
-        $select = $this->db->getPDO()->query("SELECT id, nom FROM $this->table ORDER BY nom ASC");
-        $table_field = $select->fetchAll();
-        $table_field_list = array();
-        foreach ($table_field as $filed) {
-            $table_field_list[$filed['id']] = $filed['nom'];
-        }
-        return $table_field_list;
     }
 
     public function paginateStatement($statement,$offset,$limit){

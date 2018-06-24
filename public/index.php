@@ -44,6 +44,8 @@ switch($module){
 		$controller = new PostsController();
 		$controller->show();
 		break;
+
+
 	//AUTHENTIFICATION
 	case 'login':
 		$controller = new UsersController();
@@ -53,19 +55,95 @@ switch($module){
 		$controller = new UsersController();
 		$controller->logout();
 		break;
+	case 'users.forget':
+		$controller = new UsersController();
+		$controller->forgetPassword();
+		break;
+	case 'users.reset':
+		$controller = new UsersController();
+		$controller->resetPassword();
+		break;
 
 	/////////////////////////////////////////
 	//	ADMINISTRATION					  //
 	///////////////////////////////////////
 
 
-	//GESTION DES POSTS UTILISATEURS
-	case 'utilisateurs.login':
-		$controller = new \App\Controller\UtilisateursController();
-		$controller->login();
+	//GESTION DES UTILISATEURS
+	case 'admin.utilisateurs.index':
+		$controller = new \App\Controller\Admin\UtilisateursController();
+		$controller->index();
+		break;
+	case 'admin.utilisateurs.add':
+		$controller = new \App\Controller\Admin\UtilisateursController();
+		$controller->add();
+		break;
+	case 'admin.utilisateurs.edit':
+		$controller = new \App\Controller\Admin\UtilisateursController();
+		$controller->edit();
+		break;
+	case 'admin.utilisateurs.delete':
+		$controller = new \App\Controller\Admin\UtilisateursController();
+		$controller->delete();
+		break;
+
+		//GESTION DES ADMINISTRATEURS
+	case 'admin.admins.index':
+		$controller = new \App\Controller\Admin\AdministrateursController();
+		$controller->index();
+		break;
+	case 'admin.admins.add':
+		$controller = new \App\Controller\Admin\AdministrateursController();
+		$controller->add();
+		break;
+	case 'admin.admins.edit':
+		$controller = new \App\Controller\Admin\AdministrateursController();
+		$controller->edit();
+		break;
+	case 'admin.admins.delete':
+		$controller = new \App\Controller\Admin\AdministrateursController();
+		$controller->delete();
+		break;
 
 
-	//GESTION DES POSTS ADMINISTRATION
+		//GESTION DES AGENCES
+	case 'admin.agences.index':
+		$controller = new \App\Controller\Admin\AgencesController();
+		$controller->index();
+		break;
+	case 'admin.agences.add':
+		$controller = new \App\Controller\Admin\AgencesController();
+		$controller->add();
+		break;
+	case 'admin.agences.edit':
+		$controller = new \App\Controller\Admin\AgencesController();
+		$controller->edit();
+		break;
+	case 'admin.agences.delete':
+		$controller = new \App\Controller\Admin\AgencesController();
+		$controller->delete();
+		break;
+
+		//GESTION DES PROPRIETAIRES
+	case 'admin.proprietaires.index':
+		$controller = new \App\Controller\Admin\ProprietairesController();
+		$controller->index();
+		break;
+	case 'admin.proprietaires.add':
+		$controller = new \App\Controller\Admin\ProprietairesController();
+		$controller->add();
+		break;
+	case 'admin.proprietaires.edit':
+		$controller = new \App\Controller\Admin\ProprietairesController();
+		$controller->edit();
+		break;
+	case 'admin.proprietaires.delete':
+		$controller = new \App\Controller\Admin\ProprietairesController();
+		$controller->delete();
+		break;
+
+
+	//GESTION DES POSTS
 	case 'admin.posts.index':
 		$controller = new \App\Controller\Admin\PostsController();
 		$controller->index();
@@ -86,16 +164,13 @@ switch($module){
 		$controller = new \App\Controller\Admin\PostsController();
 		$controller->delete();
 		break;
-
-
-	//LIBRAIRIE ADMINISTRATION
-	case 'admin.posts.index.excel':
+	case 'admin.posts.excel':
 		$controller = new \App\Controller\Admin\PostsController();
 		$controller->export();
 		break;
 
 
-	//GESTION DES CATEGORIES ADMINISTRATION
+	//GESTION DES CATEGORIES
 	case 'admin.categories.index':
 		$controller = new \App\Controller\Admin\CategoriesController();
 		$controller->index();
@@ -114,7 +189,7 @@ switch($module){
 		break;
 
 
-	//GESTION D'ARRONDISSEMENT ADMINISTRATION
+	//GESTION D'ARRONDISSEMENT
 	case 'admin.arrond.index':
 		$controller = new \App\Controller\Admin\ArrondissementsController();
 		$controller->index();
@@ -239,6 +314,11 @@ switch($module){
 		$controller = new \App\Controller\Admin\StatutsController();
 		$controller->delete();
 		break;
+
+	/////////////////////////////////////////
+	//			FIN ADMINISTRATION		//
+	///////////////////////////////////////
+
 
 	default:
 		$controller = new \App\Controller\AppController();

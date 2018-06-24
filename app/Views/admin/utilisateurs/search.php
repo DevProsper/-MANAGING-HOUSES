@@ -1,19 +1,19 @@
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-lg-10">
-		<h2>GESTION DES BIENS</h2>
+		<h2>GESTION DES UTILISATEURS</h2>
 	</div>
 	<div class="col-lg-12">
-		Flash
+		<?= flash(); ?>
 	</div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
 	<div class="row">
 		<div class="col-md-10">
-			<a href="index.php?module=admin.posts.index" type="submit" class="btn btn-sm btn-primary">ACTUALISE LA PAGE APRES LA RECHERCHE</a>
+			<a href="index.php?module=admin.utilisateurs.index" type="submit" class="btn btn-sm btn-primary">ACTUALISE LA PAGE APRES LA RECHERCHE</a>
 			<form method="post" class="pull-right mail-search">
 				<div class="input-group">
 					<input type="text" class="form-control input-sm"
-						   name="query" placeholder="Nom ou la categorie">
+						   name="query" placeholder="Recherche par Nom">
 					<div class="input-group-btn">
 						<input type="submit" class="btn btn-sm btn-primary" value="Rechercher">
 					</div>
@@ -35,29 +35,28 @@
 						<thead>
 						<tr>
 							<th>#</th>
-							<th data-hide="phone,tablet" >Titre</th>
-							<th data-hide="phone,tablet" >prix</th>
-							<th data-hide="phone,tablet" >Categorie</th>
-							<th data-hide="phone,tablet" >Propriétaire</th>
-							<th data-hide="phone,tablet" >status</th>
-							<th class="text-right">Action</th>
+                            <th data-hide="phone,tablet" >Nom</th>
+                            <th data-hide="phone,tablet" >Email</th>
+                            <th data-hide="phone,tablet" >Tel</th>
+                            <th data-hide="phone,tablet" >Role</th>
+                            <th data-hide="phone,tablet" >Satut</th>
+                            <th class="text-right">Action</th>
 						</tr>
 						</thead>
 						<tbody>
-						<?php foreach ($posts as $post): ?>
+						<?php foreach ($utilisateurs as $utilisateur): ?>
 							<tr>
-								<td><?= $post['id'] ?></td>
-								<td><?= $post['titre'] ?></td>
-								<td><?= $post['id'] ?></td>
-								<td><?= $post['titre'] ?></td>
-								<td><?= $post['id'] ?></td>
-								<td><?= $post['id'] ?></td>
+								<td><?= $utilisateur['id']?></td>
+                                <td><?= $utilisateur['prenom']?></td>
+                                <td><?= $utilisateur['email']?></td>
+                                <td><?= $utilisateur['tel']?></td>
+                                <td><?= $utilisateur['role']?></td>
+                                <td><?= $utilisateur['statut']?></td>
 								<td class="text-right">
 									<div class="btn-group">
-										<a href="index.php?page=admin.posts.view&id=<?= $post['id']?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Voir</a>
-										<a href="index.php?module=admin.posts.edit&id=<?= $post['id'] ?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Edit</a>
-										<form action="index.php?module=admin.posts.delete" style="display: inline;" method="post">
-											<input type="hidden" name="id" value="<?= $post['id'] ?>">
+										<a href="index.php?module=admin.utilisateurs.edit&id=<?= $utilisateur['id'] ?>" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Edit</a>
+										<form action="index.php?module=admin.utilisateurs.delete" style="display: inline;" method="utilisateur">
+											<input type="hidden" name="id" value="<?= $utilisateur['id'] ?>">
 											<button type="submit" class="btn btn-xs btn-danger" onclick="return confirm('Etes vous sur de supprimer ?')"><i class="fa fa-trash"></i>Supprimer</button>
 										</form>
 									</div>
@@ -71,6 +70,5 @@
 
 				</div>
 			</div>
-			Nav
 		</div>
 	</div></div></div></div>

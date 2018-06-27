@@ -45,7 +45,7 @@
                             ?>
                             <tr>
                                 <td><?= $proprietaires['id']?></td>
-                                <td><?= $proprietaires['prenom']?> - <?= $proprietaires['nom']?></td>
+                                <td><?= $proprietaires['nom']?></td>
                                 <td><?= $proprietaires['email']?></td>
                                 <td><?= $proprietaires['tel']?></td>
                                 <td><?= $proprietaires['role']?></td>

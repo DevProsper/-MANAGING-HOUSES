@@ -33,7 +33,7 @@
 							<th data-hide="phone,tablet" >Titre</th>
 							<th data-hide="phone,tablet" >Quotien</th>
 							<th data-hide="phone,tablet" >Categorie</th>
-							<th data-hide="phone,tablet" >Propriétaire</th>
+							<th data-hide="phone,tablet" >Appartenance</th>
 							<th data-hide="phone,tablet" >status</th>
 							<th class="text-right">Action</th>
 
@@ -48,8 +48,8 @@
 								<td><?= $posts['titre']?></td>
 								<td><?= $posts['prix']?></td>
 								<td><?= $posts['categorie']?></td>
-								<td><?= $posts['id']?></td>
 								<td><?= $posts['utilisateur']?></td>
+								<td><?= $posts['statut']?></td>
 								<td class="text-right">
 									<div class="btn-group">
 										<a href="index.php?page=admin.posts.view&id=<?= $posts['id']?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Voir</a>

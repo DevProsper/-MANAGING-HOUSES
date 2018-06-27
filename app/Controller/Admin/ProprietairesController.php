@@ -23,8 +23,8 @@ class ProprietairesController extends AdminAppController
             $query = $_POST['query'];
             $q = '%'.$query.'%';
             $sql = $this->Proprietaire->sql ."
-            WHERE id_role = 8 AND utilisateurs.nom
-            LIKE '%$query%' ORDER BY utilisateurs.nom ASC";
+            WHERE id_role = 8 AND utilisateurs.nom_proprietaire
+            LIKE '%$query%' ORDER BY utilisateurs.nom_proprietaire ASC";
             $sql = $this->db->getPDO()->prepare($sql);
             $sql->execute([$q]);
             $count = $sql->rowCount();
@@ -48,7 +48,7 @@ class ProprietairesController extends AdminAppController
 
     public function add(){
         if(!empty($_POST)){
-            $nom = htmlspecialchars(trim($_POST['nom']));
+            $nom_proprietaire = htmlspecialchars(trim($_POST['nom_proprietaire']));
             $tel = htmlspecialchars(trim($_POST['tel']));
             $prenom = htmlspecialchars(trim($_POST['prenom']));
             $adresse = htmlspecialchars(trim($_POST['adresse']));
@@ -59,12 +59,12 @@ class ProprietairesController extends AdminAppController
             $fonction = htmlspecialchars(trim($_POST['fonction']));
 
             $errors = [];
-            if (empty($nom)|| empty($prenom)) {
+            if (empty($nom_proprietaire)|| empty($prenom)) {
                 $errors['empty'] = "Tous les champs sont obligatoires";
             }
             if(empty($errors)){
                 $result = $this->Proprietaire->create([
-                    'nom' => $nom,
+                    'nom_proprietaire' => $nom_proprietaire,
                     'prenom'  => $prenom,
                     'tel'  => $tel,
                     'id_role'  => '8',
@@ -92,7 +92,7 @@ class ProprietairesController extends AdminAppController
 
     public function edit(){
         if(!empty($_POST)){
-            $nom = htmlspecialchars(trim($_POST['nom']));
+            $nom_proprietaire = htmlspecialchars(trim($_POST['nom_proprietaire']));
             $tel = htmlspecialchars(trim($_POST['tel']));
             $prenom = htmlspecialchars(trim($_POST['prenom']));
             $adresse = htmlspecialchars(trim($_POST['adresse']));
@@ -103,12 +103,12 @@ class ProprietairesController extends AdminAppController
             $fonction = htmlspecialchars(trim($_POST['fonction']));
 
             $errors = [];
-            if (empty($nom)|| empty($prenom)) {
+            if (empty($nom_proprietaire)|| empty($prenom)) {
                 $errors['empty'] = "Tous les champs sont obligatoires";
             }
             if(empty($errors)){
                 $result = $this->Utilisateur->update($_GET['id'],[
-                    'nom' => $nom,
+                    'nom_proprietaire' => $nom_proprietaire,
                     'prenom'  => $prenom,
                     'tel'  => $tel,
                     'id_role'  => '8',

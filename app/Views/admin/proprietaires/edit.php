@@ -28,7 +28,7 @@
                         <div class="col-sm-8 b-r">
                             <form method="post" action="">
                                 <div class="form-group">
-                                    <?= $form->input('nom', 'Nom'); ?>
+                                    <?= $form->input('nom_proprietaire', 'Nom du proprietaire des biens'); ?>
                                 </div>
                                 <div class="form-group">
                                     <?= $form->input('prenom', 'Prenom'); ?>
@@ -49,7 +49,12 @@
                                     <?= $form->input('identite', 'Identite'); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->input('password', 'Mot de passe'); ?>
+                                    <label>Mot de passe</label>
+                                    <input class="form-control" type="password" name="password">
+                                </div>
+                                <div class="form-group">
+                                    <label>Repeter le mot de passe</label>
+                                    <input class="form-control" type="password" name="password">
                                 </div>
                                 <div class="form-group">
                                     <?= $form->select('id_statut', 'Etat', $etat_list); ?>

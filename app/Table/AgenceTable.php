@@ -9,32 +9,9 @@
 namespace App\Table;
 
 
-use Core\Table\Table;
-
-class AgenceTable extends Table
+class AgenceTable extends UtilisateurTable
 {
     protected $table = "utilisateurs";
-
-    public $sql = "
-    SELECT  utilisateurs.id,
-            utilisateurs.nom,
-            utilisateurs.prenom,
-            utilisateurs.adresse,
-            utilisateurs.tel,
-            utilisateurs.email,
-            utilisateurs.fonction,
-            utilisateurs.latitude,
-            utilisateurs.longitude,
-            utilisateurs.identite,
-            utilisateurs.id_utilisateur,
-            statuts.nom as statut,
-            roles.nom as role
-        FROM utilisateurs
-        LEFT JOIN statuts
-        ON utilisateurs.id_statut = statuts.id
-        LEFT JOIN roles
-        ON utilisateurs.id_role = roles.id
-        ";
 
     public function extraAgence($id,$nom){
         $select = $this->db->getPDO()->query("SELECT $id, $nom FROM $this->table WHERE id_role = 7 ORDER BY $nom ASC");

@@ -54,6 +54,7 @@ class PostsController extends AdminAppController
             $id_ville = htmlspecialchars(trim($_POST['id_ville']));
             $id_arrondissement = htmlspecialchars(trim($_POST['id_arrondissement']));
             $id_quartier = htmlspecialchars(trim($_POST['id_quartier']));
+            $id_proprietaire = htmlspecialchars(trim($_POST['id_proprietaire']));
             $id_type_bien = htmlspecialchars(trim($_POST['id_type_bien']));
             $adresse = htmlspecialchars(trim($_POST['adresse']));
             $latitude = htmlspecialchars(trim($_POST['latitude']));
@@ -79,6 +80,7 @@ class PostsController extends AdminAppController
                     'id_quartier'  => $id_quartier,
                     'id_piece'  => $id_piece,
                     'id_type_bien'  => $id_type_bien,
+                    'id_proprietaire'  => $id_proprietaire,
                     'adresse'  => $adresse,
                     'latitude'  => $latitude,
                     'longitude'  => $longitude,
@@ -105,10 +107,11 @@ class PostsController extends AdminAppController
         $etat_list = $this->Statut->extra();
         $role_list = $this->Role->extra();
         $agence_list = $this->Utilisateur->extraAgence('id','nom');
+        $proprietaire_list = $this->Utilisateur->extraProprietaire('id','nom');
         $form = new BootstrapForm($_POST);
         $this->render('admin.posts.edit', compact('form', 'categories_list','errors',
             'arrondissement_list','ville_list','quartier_list','piece_list',
-            'type_list','etat_list','role_list','agence_list'));
+            'type_list','etat_list','role_list','agence_list','proprietaire_list'));
 
     }
 
@@ -180,6 +183,7 @@ class PostsController extends AdminAppController
             $id_quartier = htmlspecialchars(trim($_POST['id_quartier']));
             $id_type_bien = htmlspecialchars(trim($_POST['id_type_bien']));
             $adresse = htmlspecialchars(trim($_POST['adresse']));
+            $id_proprietaire = htmlspecialchars(trim($_POST['id_proprietaire']));
             $latitude = htmlspecialchars(trim($_POST['latitude']));
             $longitude = htmlspecialchars(trim($_POST['longitude']));
             $id_piece = htmlspecialchars(trim($_POST['id_piece']));
@@ -202,6 +206,7 @@ class PostsController extends AdminAppController
                 'id_quartier'  => $id_quartier,
                 'id_piece'  => $id_piece,
                 'id_type_bien'  => $id_type_bien,
+                'id_proprietaire'  => $id_proprietaire,
                 'adresse'  => $adresse,
                 'latitude'  => $latitude,
                 'longitude'  => $longitude,
@@ -227,10 +232,11 @@ class PostsController extends AdminAppController
         $etat_list = $this->Statut->extra();
         $role_list = $this->Role->extra();
         $agence_list = $this->Utilisateur->extraAgence('id','nom');
+        $proprietaire_list = $this->Utilisateur->extraProprietaire('id','nom');
         $form = new BootstrapForm($post);
         $this->render('admin.posts.edit', compact('form', 'categories_list','errors',
             'arrondissement_list','ville_list','quartier_list','piece_list',
-            'type_list','etat_list','role_list','agence_list'));
+            'type_list','etat_list','role_list','agence_list','proprietaire_list'));
     }
 
     public function delete(){

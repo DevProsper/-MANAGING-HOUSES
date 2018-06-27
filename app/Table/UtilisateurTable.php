@@ -20,6 +20,8 @@ class UtilisateurTable extends Table
             utilisateurs.nom,
             utilisateurs.prenom,
             utilisateurs.adresse,
+            utilisateurs.nom_agence,
+            utilisateurs.nom_prorietaire,
             utilisateurs.tel,
             utilisateurs.email,
             utilisateurs.fonction,
@@ -51,6 +53,16 @@ class UtilisateurTable extends Table
 
     public function extraAgence($id,$nom){
         $select = $this->db->getPDO()->query("SELECT $id, $nom FROM $this->table WHERE id_role = 7 ORDER BY $nom ASC");
+        $table_field = $select->fetchAll();
+        $table_field_list = array();
+        foreach ($table_field as $filed) {
+            $table_field_list[$filed[$id]] = $filed[$nom];
+        }
+        return $table_field_list;
+    }
+
+    public function extraProprietaire($id,$nom){
+        $select = $this->db->getPDO()->query("SELECT $id, $nom FROM $this->table WHERE id_role = 8 ORDER BY $nom ASC");
         $table_field = $select->fetchAll();
         $table_field_list = array();
         foreach ($table_field as $filed) {

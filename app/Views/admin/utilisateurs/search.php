@@ -47,7 +47,7 @@
 						<?php foreach ($utilisateurs as $utilisateur): ?>
 							<tr>
 								<td><?= $utilisateur['id']?></td>
-                                <td><?= $utilisateur['prenom']?></td>
+                                <td><?= $utilisateur['nom']?></td>
                                 <td><?= $utilisateur['email']?></td>
                                 <td><?= $utilisateur['tel']?></td>
                                 <td><?= $utilisateur['role']?></td>

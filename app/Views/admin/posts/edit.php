@@ -70,6 +70,9 @@
                                     <?= $form->select('id_agence', 'Agence', $agence_list); ?>
                                 </div>
                                 <div class="form-group">
+                                    <?= $form->select('id_proprietaire', 'Proprietaire', $proprietaire_list); ?>
+                                </div>
+                                <div class="form-group">
                                     <label>Fichier</label>
                                     <input type="file" name="file_name[]">
                                     <input type="file" name="file_name[]">

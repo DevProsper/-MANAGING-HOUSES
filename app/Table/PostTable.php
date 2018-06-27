@@ -28,22 +28,35 @@ class PostTable extends Table
              arrondissements.nom as arrondissement,
              types_bien.nom as type_bien,
              pieces.nombre as piece,
-             statuts.nom as statut
+             statuts.nom as statut,
+             utilisateurs.nom_agence as agence,
+             utilisateurs.nom_prorietaire as proprietaire
+            
             FROM posts
+
             LEFT JOIN categories
             ON posts.id_categorie = categories.id
+
             LEFT JOIN utilisateurs
             ON posts.id_utilisateur = utilisateurs.id
+            || posts.id_agence = utilisateurs.id
+            || posts.id_proprietaire = utilisateurs.id
+
             LEFT JOIN villes
             ON posts.id_ville = villes.id
+
             LEFT JOIN quartiers
             ON posts.id_quartier = quartiers.id
+
             LEFT JOIN arrondissements
             ON posts.id_arrondissement = arrondissements.id
+
             LEFT JOIN types_bien
             ON posts.id_type_bien = types_bien.id
+
             LEFT JOIN pieces
             ON posts.id_piece = pieces.id
+
             LEFT JOIN statuts
             ON posts.id_statut = statuts.id
             ";

@@ -45,7 +45,7 @@
                             ?>
                             <tr>
                                 <td><?= $admins['id']?></td>
-                                <td><?= $admins['prenom']?> - <?= $admins['nom']?></td>
+                                <td><?= strtoupper($admins['nom'])?></td>
                                 <td><?= $admins['email']?></td>
                                 <td><?= $admins['tel']?></td>
                                 <td><?= $admins['role']?></td>

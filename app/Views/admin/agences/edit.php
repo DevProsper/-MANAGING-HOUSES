@@ -28,10 +28,7 @@
                         <div class="col-sm-8 b-r">
                             <form method="post" action="">
                                 <div class="form-group">
-                                    <?= $form->input('nom', 'Nom'); ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= $form->input('prenom', 'Prenom'); ?>
+                                    <?= $form->input('nom_agence', 'Nom de l\'agence'); ?>
                                 </div>
                                 <div class="form-group">
                                     <?= $form->input('adresse', 'Adresse'); ?>
@@ -43,13 +40,12 @@
                                     <?= $form->input('email', 'Email'); ?>
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->input('fonction', 'Fonction'); ?>
+                                    <label>Mot de passe</label>
+                                    <input class="form-control" type="password" name="password">
                                 </div>
                                 <div class="form-group">
-                                    <?= $form->input('identite', 'Identite'); ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= $form->input('password', 'Mot de passe'); ?>
+                                    <label>Repeter le mot de passe</label>
+                                    <input class="form-control" type="password" name="password">
                                 </div>
                                 <div class="form-group">
                                     <?= $form->select('id_statut', 'Etat', $etat_list); ?>

@@ -81,6 +81,9 @@ class BootstrapForm extends Form
     {
         $label = '<label>'.$label.'</label>';
         $input = '<select class="form-control" name="'.$name.'">';
+        if(empty($name)){
+            $input .= "<option value=''>-- Selectionner ---</option>";
+        }
         foreach($options as $k => $v){
         $attributes = '';
         if ($k == $this->getValue($name)) {
@@ -91,22 +94,5 @@ class BootstrapForm extends Form
         $input .= '</select>';
 
         return $this->surround($label . $input);
-    }
-
-    public function select2($id, $options = array()){
-
-        $return = "<select class='form-control' id='$id' name='$id'>";
-        foreach ($options as $k => $v) {
-            if (!isset($_POST[$id]) && empty($_POST[$id])) {
-                $return .= "<option value=''>-- Selectionner ---</option>";
-            }
-            $selected = '';
-            if (isset($_POST[$id]) && $k == $_POST[$id]) {
-                $selected = 'selected="selected"';
-            }
-            $return .= "<option value='$k' $selected>$v</option>";
-        }
-        $return .= "</select>";
-        return $return;
     }
 }

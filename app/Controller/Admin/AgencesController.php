@@ -23,8 +23,8 @@ class AgencesController extends AdminAppController
             $query = $_POST['query'];
             $q = '%'.$query.'%';
             $sql = $this->Agence->sql ."
-            WHERE id_role = 7 AND utilisateurs.nom
-            LIKE '%$query%' ORDER BY utilisateurs.nom ASC";
+            WHERE id_role = 7 AND utilisateurs.nom_agence
+            LIKE '%$query%' ORDER BY utilisateurs.nom_agence ASC";
             $sql = $this->db->getPDO()->prepare($sql);
             $sql->execute([$q]);
             $count = $sql->rowCount();
@@ -48,32 +48,28 @@ class AgencesController extends AdminAppController
 
     public function add(){
         if(!empty($_POST)){
-            $nom = htmlspecialchars(trim($_POST['nom']));
+            $nom_agence = htmlspecialchars(trim($_POST['nom_agence']));
             $tel = htmlspecialchars(trim($_POST['tel']));
             $prenom = htmlspecialchars(trim($_POST['prenom']));
             $adresse = htmlspecialchars(trim($_POST['adresse']));
             $password = htmlspecialchars(trim($_POST['password']));
-            $identite = htmlspecialchars(trim($_POST['identite']));
             $id_statut = htmlspecialchars(trim($_POST['id_statut']));
             $email = htmlspecialchars(trim($_POST['email']));
-            $fonction = htmlspecialchars(trim($_POST['fonction']));
 
             $errors = [];
-            if (empty($nom)|| empty($prenom)) {
+            if (empty($nom_agence)|| empty($prenom)) {
                 $errors['empty'] = "Tous les champs sont obligatoires";
             }
             if(empty($errors)){
                 $result = $this->Agence->create([
-                    'nom' => $nom,
+                    'nom_agence' => $nom_agence,
                     'prenom'  => $prenom,
                     'tel'  => $tel,
                     'id_role'  => '7',
                     'id_statut'  => $id_statut,
                     'adresse'  => $adresse,
                     'password'  => sha1($password),
-                    'identite'  => $identite,
                     'email'  => $email,
-                    'fonction'  => $fonction,
                     'id_utilisateur'  => $_SESSION['auth']->id,
                     'creation'  => date('Y-m-d H:i:s')
                 ]);
@@ -92,32 +88,28 @@ class AgencesController extends AdminAppController
 
     public function edit(){
         if(!empty($_POST)){
-            $nom = htmlspecialchars(trim($_POST['nom']));
+            $nom_agence = htmlspecialchars(trim($_POST['nom_agence']));
             $tel = htmlspecialchars(trim($_POST['tel']));
             $prenom = htmlspecialchars(trim($_POST['prenom']));
             $adresse = htmlspecialchars(trim($_POST['adresse']));
             $password = htmlspecialchars(trim($_POST['password']));
-            $identite = htmlspecialchars(trim($_POST['identite']));
             $id_statut = htmlspecialchars(trim($_POST['id_statut']));
             $email = htmlspecialchars(trim($_POST['email']));
-            $fonction = htmlspecialchars(trim($_POST['fonction']));
 
             $errors = [];
-            if (empty($nom)|| empty($prenom)) {
+            if (empty($nom_agence)|| empty($prenom)) {
                 $errors['empty'] = "Tous les champs sont obligatoires";
             }
             if(empty($errors)){
                 $result = $this->Utilisateur->update($_GET['id'],[
-                    'nom' => $nom,
+                    'nom_agence' => $nom_agence,
                     'prenom'  => $prenom,
                     'tel'  => $tel,
                     'id_role'  => '7',
                     'id_statut'  => $id_statut,
                     'adresse'  => $adresse,
                     'password'  => sha1($password),
-                    'identite'  => $identite,
                     'email'  => $email,
-                    'fonction'  => $fonction,
                     'id_utilisateur'  => $_SESSION['auth']->id,
                     'creation'  => date('Y-m-d H:i:s')
                 ]);
